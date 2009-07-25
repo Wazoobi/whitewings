@@ -17,9 +17,12 @@ class CObjectManager
 private:
 	vector<CBase*> m_vObjectList;
 
-public:
 	CObjectManager(void);
 	~CObjectManager(void);
+	CObjectManager(const CObjectManager& );
+	CObjectManager& operator=(const CObjectManager& );
+
+public:
 
 	static CObjectManager* GetInstance(void);
 	void DeleteInstance(void);

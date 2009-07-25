@@ -12,7 +12,7 @@
 #include "SGD Wrappers/CSGD_DirectInput.h"
 #include "CGame.h"
 
-#include "CSGD_MessageSystem.h"
+#include "CMessageManager.h"
 
 CPlayer::CPlayer(void)
 {
@@ -27,7 +27,7 @@ CPlayer::CPlayer(void)
 	m_nDirection = 1;
 
 	m_nDisplayDepth = 1;	// Z-sorting
-	m_uiRefCount = 1;		// Always start with a reference to yourself
+	m_uiRefCount = 2;
 	m_uiType = OBJ_PLAYER;
 	SetPosX(400.0f);
 	SetPosY(300.0f);
@@ -79,7 +79,7 @@ void CPlayer::Update(float fElapsedTime)
 	if(CSGD_DirectInput::GetInstance()->KeyPressed(DIK_S) && m_fStunGunTimer > SHOT_DELAY)
 	{
 		m_fStunGunTimer = 0.0f;
-		CSGD_MessageSystem::GetInstance()->SendMsg(new CCreateStunShotMessage(this));
+		CMessageManager::GetInstance()->SendMsg(new CCreateStunShotMessage(this));
 	}
 
 	if(CSGD_DirectInput::GetInstance()->KeyPressed(DIK_D))

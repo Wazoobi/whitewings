@@ -26,9 +26,12 @@ class CCreditsState : public IGameState
 
 	int m_nBackgroundID;
 
-public:
 	CCreditsState(void);
 	~CCreditsState(void);
+	CCreditsState(const CCreditsState& );
+	CCreditsState& operator=(const CCreditsState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

@@ -37,9 +37,12 @@ class CHackingState : public IGameState
 	int		nWidth;
 	int		nHeight;
 
-public:
 	CHackingState(void);
 	~CHackingState(void);
+	CHackingState(const CHackingState& );
+	CHackingState& operator=(const CHackingState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

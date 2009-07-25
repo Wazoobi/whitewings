@@ -33,10 +33,12 @@ class COptionsState : public IGameState
 	int currentSelection;
 	int m_nBackgroundID;
 
-
-public:
 	COptionsState(void);
 	~COptionsState(void);
+	COptionsState(const COptionsState& );
+	COptionsState& operator=(const COptionsState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

@@ -45,9 +45,12 @@ class CGamePlayState : public IGameState
 	int m_nBackgroundID;
 	int m_nSoundID;
 
-public:
 	CGamePlayState(void);
 	~CGamePlayState(void);
+	CGamePlayState(const CGamePlayState& );
+	CGamePlayState& operator=(const CGamePlayState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

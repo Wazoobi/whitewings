@@ -32,11 +32,14 @@ class CTempState : public IGameState
 
 	int						m_nBackgroundID;
 
-	CPlayer *m_pPlayer;
+	CPlayer					*m_pPlayer;
 
-public:
 	CTempState(void);
 	~CTempState(void);
+	CTempState(const CTempState& );
+	CTempState& operator=(const CTempState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

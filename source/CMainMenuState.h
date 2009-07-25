@@ -27,9 +27,12 @@ class CMainMenuState : public IGameState
 
 	int currentSelection;
 
-public:
 	CMainMenuState(void);
 	~CMainMenuState(void);
+	CMainMenuState(const CMainMenuState&);
+	CMainMenuState& operator=(const CMainMenuState&);
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

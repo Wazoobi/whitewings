@@ -14,7 +14,7 @@
 #include "CStunShot.h"
 #include "CPlayer.h"
 #include "CWalker.h"
-#include "CSGD_MessageSystem.h"
+#include "CMessageManager.h"
 
 CTempState::CTempState(void)
 {
@@ -60,8 +60,10 @@ void CTempState::Enter(void)
 	m_pOM->AddObject(m_pPlayer);
 
 	CWalker* pWalker = new CWalker();
-
+	
 	m_pOM->AddObject(pWalker);
+
+	SAFE_RELEASE(pWalker);
 }
 
 void CTempState::Exit(void)
@@ -98,7 +100,7 @@ void CTempState::Update(float fElapsedTime)
 {
 	m_pOM->UpdateObjects(fElapsedTime);
 	m_pOM->CheckCollisions();
-	CSGD_MessageSystem::GetInstance()->ProcessMessages();
+	CMessageManager::GetInstance()->ProcessMessages();
 }
 
 void CTempState::Render(void)

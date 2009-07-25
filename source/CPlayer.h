@@ -19,9 +19,13 @@ class CPlayer : public CBase
 	int		m_nDirection;	// 0 is Left. 1 is Right.
 	int		m_nImageID;
 
-public:
+
 	CPlayer();
 	~CPlayer();
+	CPlayer(const CPlayer&);
+	CPlayer& operator=(const CPlayer&);
+
+public:
 
 	static CPlayer* GetInstance();
 
