@@ -11,7 +11,7 @@
 #include "CPausedState.h"
 #include "CLogger.h"
 #include "SGD Wrappers/SGD_Math.h"
-#include "CSGD_MessageSystem.h"
+#include "CMessageManager.h"
 #include "CSGD_EventSystem.h"
 
 #include <fstream>
@@ -130,7 +130,7 @@ void CGamePlayState::Update(float fElapsedTime)
 {
 	m_pOM->UpdateObjects(fElapsedTime);
 	m_pOM->CheckCollisions();
-	CSGD_MessageSystem::GetInstance()->ProcessMessages();
+	CMessageManager::GetInstance()->ProcessMessages();
 	CSGD_EventSystem::GetInstance()->ProcessEvents();
 }
 

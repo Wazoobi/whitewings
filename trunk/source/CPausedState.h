@@ -27,9 +27,12 @@ class CPausedState : public IGameState
 
 	int currentSelection;
 
-public:
 	CPausedState(void);
 	~CPausedState(void);
+	CPausedState(const CPausedState& );
+	CPausedState& operator=(const CPausedState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

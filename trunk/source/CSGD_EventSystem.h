@@ -27,10 +27,11 @@ class CSGD_EventSystem
 		bool AlreadyRegistered(EVENTID eventID, IListener* pClient);
 
 		CSGD_EventSystem() {}
+		~CSGD_EventSystem() {}
 		CSGD_EventSystem(const CSGD_EventSystem&);
 		CSGD_EventSystem& operator=(const CSGD_EventSystem&);
 
-		~CSGD_EventSystem() {}
+		
 
 	public:
 

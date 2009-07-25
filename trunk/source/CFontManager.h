@@ -27,8 +27,8 @@ class CFontManager
 
 	CFontManager(void);
 	~CFontManager(void);
-	CFontManager(const CFontManager&) {}
-	CFontManager& operator=(const CFontManager&) {}
+	CFontManager(const CFontManager&);
+	CFontManager& operator=(const CFontManager&);
 
 public:
 

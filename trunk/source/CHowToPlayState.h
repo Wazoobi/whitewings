@@ -26,9 +26,12 @@ class CHowToPlayState : public IGameState
 
 	int m_nBackgroundID;
 
-public:
 	CHowToPlayState(void);
 	~CHowToPlayState(void);
+	CHowToPlayState(const CHowToPlayState& );
+	CHowToPlayState& operator=(const CHowToPlayState& );
+
+public:
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

@@ -10,7 +10,7 @@
 
 #include "SGD Wrappers/CSGD_TextureManager.h"
 
-#include "CSGD_MessageSystem.h"
+#include "CMessageManager.h"
 
 #include "CEnemy.h"
 
@@ -42,7 +42,7 @@ void CStunShot::Update(float fElapsedTime)
 	m_fLifeTimer += fElapsedTime;
 
 	if(m_fLifeTimer > m_fLife)
-		CSGD_MessageSystem::GetInstance()->SendMsg(new CDestroyStunShotMessage(this));
+		CMessageManager::GetInstance()->SendMsg(new CDestroyStunShotMessage(this));
 
 	// Using the elapsed time
 	SetPosX( GetPosX() + (GetVelX() * fElapsedTime) );
@@ -65,7 +65,7 @@ bool CStunShot::CheckCollision(CBase* pBase)
 
 	if(CBase::CheckCollision(pBase) && pBase->GetObjectType() == OBJ_ENEMY)
 	{
-		CSGD_MessageSystem::GetInstance()->SendMsg(new CDestroyStunShotMessage(this));
+		CMessageManager::GetInstance()->SendMsg(new CDestroyStunShotMessage(this));
 		CEnemy *pEnemy = (CEnemy*)pBase;
 		pEnemy->SetState(STUNNED);
 	}

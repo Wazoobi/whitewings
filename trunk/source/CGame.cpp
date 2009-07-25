@@ -8,7 +8,7 @@
 
 #include "CGame.h"
 #include "CMainMenuState.h"
-#include "CSGD_MessageSystem.h"
+#include "CMessageManager.h"
 #include "CSGD_ObjectFactory.h"
 #include "CObjectManager.h"
 #include "CSGD_EventSystem.h"
@@ -35,7 +35,7 @@ CGame::CGame(void)
 	m_pDS = NULL;
 	m_pWM = NULL;
 	m_pDI = NULL;
-	m_pMS = NULL;
+	m_pMM = NULL;
 
 
 	m_nBGMVolume = 100;
@@ -67,7 +67,7 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 	m_pDS = CSGD_DirectSound::GetInstance();
 	m_pWM = CSGD_WaveManager::GetInstance();
 	m_pDI = CSGD_DirectInput::GetInstance();
-	m_pMS = CSGD_MessageSystem::GetInstance();
+	m_pMM = CMessageManager::GetInstance();
 
 	m_nScreenWidth = nScreenWidth;
 	m_nScreenHeight = nScreenHeight;
@@ -93,7 +93,7 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 	m_pDS->InitDirectSound(hWnd);
 	m_pWM->InitWaveManager(hWnd, m_pDS->GetDSObject());
 	m_pDI->InitDirectInput(hWnd, hInstance, DI_KEYBOARD | DI_MOUSE | DI_JOYSTICKS);
-	m_pMS->InitMessageSystem(MessageProc );
+	m_pMM->InitMessageSystem(MessageProc);
 
 	PushState(CMainMenuState::GetInstance());
 
@@ -125,10 +125,10 @@ void CGame::Shutdown(void)
 
 	// Shutdown in the opposite order we acquired
 
-	if(m_pMS)
+	if(m_pMM)
 	{
-		m_pMS->ShutdownMessageSystem();
-		m_pMS = NULL;
+		m_pMM->ShutdownMessageSystem();
+		m_pMM = NULL;
 	}
 	if(m_pDI)
 	{

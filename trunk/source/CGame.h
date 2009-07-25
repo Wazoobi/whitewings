@@ -23,7 +23,7 @@ using std::vector;
 #include "Timer.h"
 
 class CBaseMessage;
-class CSGD_MessageSystem;
+class CMessageManager;
 
 enum JoystickButtons{DIR_A,DIR_B,DIR_X,DIR_Y,DIR_LBUMP,DIR_RBUMP,DIR_BACK,DIR_START};
 
@@ -35,7 +35,7 @@ class CGame
 	CSGD_DirectSound		*m_pDS;
 	CSGD_WaveManager		*m_pWM;
 	CSGD_DirectInput		*m_pDI;
-	CSGD_MessageSystem		*m_pMS;
+	CMessageManager			*m_pMM;
 
 	vector<IGameState*>		gameStates;
 

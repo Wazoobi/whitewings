@@ -54,7 +54,7 @@ void CEnemy::Update(float fElapsedTime)
 
 			tVector2D playerPosVector;
 			playerPosVector.fX = CPlayer::GetInstance()->GetPosX();
-			playerPosVector.fY = CPlayer::GetInstance()->GetPosX();
+			playerPosVector.fY = CPlayer::GetInstance()->GetPosY();
 
 			if(Vector2DLength(currentPosVector - playerPosVector) < m_nDetectionRange)
 				m_uiState = CHASE;
@@ -70,7 +70,7 @@ void CEnemy::Update(float fElapsedTime)
 
 			tVector2D playerPosVector;
 			playerPosVector.fX = CPlayer::GetInstance()->GetPosX();
-			playerPosVector.fY = CPlayer::GetInstance()->GetPosX();
+			playerPosVector.fY = CPlayer::GetInstance()->GetPosY();
 
 			if(Vector2DLength(currentPosVector - playerPosVector) > m_nDetectionRange)
 				m_uiState = PATROL;
