@@ -1,0 +1,10 @@
+To create the game play levels, simply edit the numbers in 
+the levels.txt.
+
+The first number is the maximum number of levels.
+
+The second number defines the number of waves per level.
+
+The third reflects the relative number of missiles per level.
+
+The fourth and fifth determine the number of special missiles.
