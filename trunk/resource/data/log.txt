@@ -1,3 +1,0 @@
-Tue Jun 23 15:35:46 2009
-Failed to open highscores.txt.
-
