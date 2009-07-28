@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<charrects>
+  <filename name="blahblahblah"/>
+  <charrect char="a"  x="0" y="0" width="100" height="100" offset="0"/>
+ </charrects>
+

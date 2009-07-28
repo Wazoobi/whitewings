@@ -1,0 +1,25 @@
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\BitmapFontEditor.csproj.GenerateResource.Cache
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\SGDFinal\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.BitmapFontEditor.resources
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\SGDFinal\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\BitmapFontEditor.csproj.GenerateResource.Cache
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.BitmapFontEditor.resources
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\BitmapFontEditor.csproj.GenerateResource.Cache
+C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Colors.resources
