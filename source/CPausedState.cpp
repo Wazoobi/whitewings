@@ -11,6 +11,8 @@
 #include "CGamePlayState.h"
 #include "COptionsState.h"
 
+#include "BitmapFontManager.h"
+
 CPausedState::CPausedState(void)
 {
 	// Get pointers to the SGD singletons
@@ -40,6 +42,7 @@ void CPausedState::Enter(void)
 {
 	m_nImageID = m_pTM->LoadTexture("resource/graphics/JuM_SGD_MenuCursor.png");
 	//TODO: Change Background
+	m_nFontImageID = m_pTM->LoadTexture("resource/graphics/JFR_Fonts.png",D3DCOLOR_ARGB(255, 0,0,0) );
 	//m_nBackgroundID = m_pTM->LoadTexture("resource/graphics/JuM_MissileCommand_BasicBackground.bmp");
 }
 
@@ -99,8 +102,12 @@ void CPausedState::Render(void)
 {	
 	//TODO: Change Background
 	//m_pTM->Draw(m_nBackgroundID,0, 0, 1, 1, 0, 0, 0, 0, D3DCOLOR_ARGB(120, 0, 0, 0));
-	m_pTM->Draw(m_nImageID, 100, 200 + currentSelection*35);
-	CFontManager::GetInstance()->Draw("Paused", 150, 100, 0.5f, 0.5f);
-	CFontManager::GetInstance()->Draw("Resume", 150, 200, 0.5f, 0.5f);
-	CFontManager::GetInstance()->Draw("Exit", 150, 235, 0.5f, 0.5f);
+	m_pTM->Draw(m_nImageID, 100, 200 + currentSelection*40);
+	//CFontManager::GetInstance()->Draw("Paused", 150, 100, 0.5f, 0.5f);
+	//CFontManager::GetInstance()->Draw("Resume", 150, 200, 0.5f, 0.5f);
+	//CFontManager::GetInstance()->Draw("Exit", 150, 235, 0.5f, 0.5f);
+
+	BitmapFontManager::GetInstance()->DrawString("PAUSED", m_nFontImageID,150,100,0.75f,0.75f);
+	BitmapFontManager::GetInstance()->DrawString("RESUME", m_nFontImageID,150,200,0.75f,0.75f);
+	BitmapFontManager::GetInstance()->DrawString("EXIT"  , m_nFontImageID,150,235,0.75f,0.75f);
 }

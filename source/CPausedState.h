@@ -11,7 +11,7 @@
 #include "IGameState.h"
 #include "CGame.h"
 #include "SGD Wrappers/CSGD_Direct3D.h"
-#include "SGD Wrappers/CSGD_TextureManager.h"
+//#include "SGD Wrappers/CSGD_TextureManager.h"
 #include "SGD Wrappers/CSGD_DirectInput.h"
 
 class CPausedState : public IGameState
@@ -24,6 +24,7 @@ class CPausedState : public IGameState
 
 	int m_nImageID;
 	int m_nBackgroundID;
+	int m_nFontImageID;
 
 	int currentSelection;
 
