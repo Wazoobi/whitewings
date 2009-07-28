@@ -13,6 +13,8 @@
 #include "CHowToPlayState.h"
 #include "CHackingState.h"
 
+#include "BitmapFontManager.h"
+
 #include "CTempState.h"
 
 CMainMenuState::CMainMenuState(void)
@@ -24,6 +26,8 @@ CMainMenuState::CMainMenuState(void)
 	pGame = CGame::GetInstance();
 
 	currentSelection = 0;
+
+	FontID = -1;
 
 	SetStateType(MAINMENU);
 }
@@ -43,6 +47,9 @@ CMainMenuState* CMainMenuState::GetInstance(void)
 void CMainMenuState::Enter(void)
 {
 	m_nImageID = m_pTM->LoadTexture("resource/graphics/JuM_SGD_MenuCursor.png");
+	m_nBackgroundID = m_pTM->LoadTexture("resource/graphics/WW_MMBackground.png");
+
+	FontID = m_pTM->LoadTexture("resource/graphics/JFR_Fonts.png",D3DCOLOR_ARGB(255, 0,0,0) );
 
 
 	//TODO: Change Background
@@ -80,8 +87,8 @@ bool CMainMenuState::Input(void)
 		{
 		case 0:
 			pGame->PopState();
-			pGame->PushState(CGamePlayState::GetInstance());
-			//pGame->PushState(CTempState::GetInstance());
+			//pGame->PushState(CGamePlayState::GetInstance());
+			pGame->PushState(CTempState::GetInstance());
 			break;
 		case 1:
 			pGame->PopState();
@@ -110,12 +117,21 @@ void CMainMenuState::Update(float fElapsedTime)
 void CMainMenuState::Render(void)
 {
 	//TODO: Change Background stuff
-	//m_pTM->Draw(m_nBackgroundID, 0, 0, 1.25f, 1.0f);
-	m_pTM->Draw(m_nImageID, 100, 200 + currentSelection*35);
-	CFontManager::GetInstance()->Draw("Ping Attack", 100, 100);
-	CFontManager::GetInstance()->Draw("Play", 150, 200, 0.5f, 0.5f);
-	CFontManager::GetInstance()->Draw("Options", 150, 235, 0.5f, 0.5f);
-	CFontManager::GetInstance()->Draw("How To Play", 150, 270, 0.5f, 0.5f);
-	CFontManager::GetInstance()->Draw("Credits", 150, 305, 0.5f, 0.5f);
-	CFontManager::GetInstance()->Draw("Exit", 150, 340, 0.5f, 0.5f);
+	m_pTM->Draw(m_nBackgroundID, 0, 0, 3.125f, 2.35f);
+	//m_pTM->Draw(m_nImageID, 320, 200 + currentSelection*35);
+	//CFontManager::GetInstance()->Draw("Ping Attack", 100, 100);
+	//CFontManager::GetInstance()->Draw("Play", 350, 200, 0.5f, 0.5f);
+	//CFontManager::GetInstance()->Draw("Options", 350, 235, 0.5f, 0.5f);
+	//CFontManager::GetInstance()->Draw("How To Play", 350, 270, 0.5f, 0.5f);
+	//CFontManager::GetInstance()->Draw("Credits", 350, 305, 0.5f, 0.5f);
+	//CFontManager::GetInstance()->Draw("Exit", 350, 340, 0.5f, 0.5f);
+
+	BitmapFontManager::GetInstance()->DrawString("PING ATTACK",FontID,150,50,1.5f,1.5f);		//Drawn using the WhiteWing Bitmap Font Manager
+	
+	BitmapFontManager::GetInstance()->DrawString("PLAY",		FontID,270,200,1,1,D3DCOLOR_ARGB(255,255 * (currentSelection != 0),255,255));	
+	BitmapFontManager::GetInstance()->DrawString("OPTIONS",		FontID,270,250,1,1,D3DCOLOR_ARGB(255,255 * (currentSelection != 1),255,255));		
+	BitmapFontManager::GetInstance()->DrawString("HOW TO PLAY",	FontID,270,300,1,1,D3DCOLOR_ARGB(255,255 * (currentSelection != 2),255,255));	
+	BitmapFontManager::GetInstance()->DrawString("CREDITS",		FontID,270,350,1,1,D3DCOLOR_ARGB(255,255 * (currentSelection != 3),255,255));	
+	BitmapFontManager::GetInstance()->DrawString("EXIT",		FontID,270,400,1,1,D3DCOLOR_ARGB(255,255 * (currentSelection != 4),255,255));	
+
 }
