@@ -64,8 +64,8 @@ void CTileManager::Update(CPlayer* pPlayer)
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	// Camera Updates
 
-	float newPosX = pPlayer->GetPosX() + pPlayer->GetVelX();// - (CGame::GetInstance()->GetScreenWidth()/3);
-	float newPosY = pPlayer->GetPosY() + pPlayer->GetVelY();// - (CGame::GetInstance()->GetScreenHeight()/4);
+	float newPosX = pPlayer->GetPosX() - (CGame::GetInstance()->GetScreenWidth()/3);
+	float newPosY = pPlayer->GetPosY() - (CGame::GetInstance()->GetScreenHeight()/4);
 
 	//XCameraPos Possibilities
 	if (newPosX >= 0 && newPosX + CGame::GetInstance()->GetScreenWidth() < (m_pLevels[GetCurrentLevel() -1]->GetLevelWidth()*TILE_WIDTH))
@@ -77,7 +77,7 @@ void CTileManager::Update(CPlayer* pPlayer)
 
 	//YCameraPos Possibilities
 	if(newPosY >= 0 && newPosY + CGame::GetInstance()->GetScreenHeight() < (m_pLevels[GetCurrentLevel() - 1]->GetLevelHeight()*TILE_HEIGHT))
-		m_pCamera->SetCameraPosY(newPosY);
+		m_pCamera->SetCameraPosY(newPosY * TILE_HEIGHT);
 	else if(newPosY < 0)
 		m_pCamera->SetCameraPosY(0);
 	else
@@ -193,21 +193,22 @@ void CTileManager::CheckLevelCollisions(CBase* pObject, CCamera* pCamera)
 	 						pObject->SetPosY(CollisionCheck.top - 32);
 					}
 					else if(CollisionType.left < CollisionRect.right && CollisionType.right > CollisionCheck.left &&
-						CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left)
+						CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left &&
+						CollisionRect.left < CollisionCheck.left)
 					{
 						
 						//--------------------------------------------------------------------------------
-						//If this is a case where the object has collided with the level's tile's right side
+						//If this is a case where the object has collided with the level's tile's left side
 
-						pObject->SetPosX(CollisionCheck.right);
+						pObject->SetPosX(CollisionCheck.left - 32);
 					}
 					else if(CollisionType.right > CollisionRect.left && CollisionType.left < CollisionCheck.right &&
 						CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left)
 					{
 						//-------------------------------------------------------------------------------
-						//If this is a case where the object has collided with the level's tile's left side
+						//If this is a case where the object has collided with the level's tile's right side
 
-						pObject->SetPosX(CollisionCheck.left);
+						pObject->SetPosX(CollisionCheck.right);
 					}
 					else if(CollisionType.top < CollisionCheck.bottom && CollisionType.bottom > CollisionRect.top && //
 						CollisionType.bottom - CollisionType.top == CollisionType.right - CollisionType.left && //if its a corner
