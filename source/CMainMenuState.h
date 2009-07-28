@@ -24,6 +24,7 @@ class CMainMenuState : public IGameState
 
 	int m_nImageID;
 	int m_nBackgroundID;
+	int FontID;
 
 	int currentSelection;
 
