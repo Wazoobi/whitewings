@@ -26,6 +26,7 @@ but may use it in any project for educational purposes.
 #include <d3dx9.h>
 #include <vector>
 using std::vector;
+using std::string;
 
 class CSGD_TextureManager
 {
@@ -174,6 +175,20 @@ public:
 	//	Purpose:	Gets the height of a specified texture.
 	///////////////////////////////////////////////////////////////////
 	int GetTextureHeight(int nID);
+
+	///////////////////////////////////////////////////////////////////
+	//	Function:	"GetTextureFilename"
+	//
+	//	Last Modified:		7/24/2009
+	//
+	//	Input:		nID	-	The id to the texture who's filename you want.
+	//
+	//	Return:		The filename of the given texture.
+	//
+	//	Purpose:	Gets the filename of a specified texture.
+	///////////////////////////////////////////////////////////////////
+	string GetTextureFilename(int nID);
+
 
 	///////////////////////////////////////////////////////////////////
 	//	Function:	"DrawTexture"
