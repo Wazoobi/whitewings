@@ -70,6 +70,7 @@ bool CStunShot::CheckCollision(CBase* pBase)
 		{
 			CMessageManager::GetInstance()->SendMsg(new CDestroyStunShotMessage(this));
 			pEnemy->SetState(STUNNED);
+			pEnemy->SetStunnedTimer(0.0f);
 		}
 	}
 

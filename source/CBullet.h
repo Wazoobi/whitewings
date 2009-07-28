@@ -5,6 +5,8 @@
 class CBullet : public CProjectile
 {
 
+	int m_nImageID;
+
 public:
 	CBullet();
 	~CBullet();

@@ -17,6 +17,8 @@
 #include "CSGD_ObjectFactory.h"
 #include "CObjectManager.h"
 
+#include "CTileManager.h"
+
 #include <string>
 #include "CBase.h"
 using std::string;
@@ -34,6 +36,8 @@ class CGamePlayState : public IGameState
 	CSGD_DirectInput						*m_pDI;
 	CSGD_ObjectFactory<string, CBase>		*m_pOF;
 	CObjectManager							*m_pOM;
+
+	CTileManager							*m_pTileManager;
 
 	CGame *pGame;
 

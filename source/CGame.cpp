@@ -24,6 +24,7 @@ using std::iterator;
 
 #include "CStunShot.h"
 #include "CPlayer.h"
+#include "CBullet.h"
 
 using std::string;
 
@@ -78,7 +79,8 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 
 	if(!input.is_open())
 	{
-		CLogger::GetInstance()->LogError("Failed to obtain options.");
+		// TODO: Change this
+		//CLogger::GetInstance()->LogError("Failed to obtain options.");
 	}
 	else
 	{
@@ -113,7 +115,8 @@ void CGame::Shutdown(void)
 
 	if(!output.is_open())
 	{
-		CLogger::GetInstance()->LogError("Failed to save game options.");
+		// TODO: Fix This!!!
+		//CLogger::GetInstance()->LogError("Failed to save game options.");
 	}
 	else
 	{
@@ -235,7 +238,9 @@ void CGame::PopState()
 
 void CGame::ClearStates()
 {
-	for(int i = 0; i < gameStates.size(); ++i)
+	int nNumGameStatesOnStack = gameStates.size();
+
+	for(int i = 0; i < nNumGameStatesOnStack; ++i)
 	{
 		gameStates.back()->Exit();
 		gameStates.pop_back();
@@ -282,6 +287,43 @@ void MessageProc(CBaseMessage* message)
 			CObjectManager::GetInstance()->RemoveObject((CBase*)msg->GetHackOrbToDestroy());
 			break;
 		}
+	case MSG_CREATE_BULLET:
+		{
+			CCreateBulletMessage *msg = (CCreateBulletMessage*)message;
+
+			CBullet* pBullet = (CBullet*)CSGD_ObjectFactory<string, CBase>::GetInstance()->CreateObject("CBullet");
+
+			pBullet->SetOwner((CBase*)msg->GetOwner());
+
+			tVector2D tDestination;
+			tDestination.fX = CPlayer::GetInstance()->GetPosX();
+			tDestination.fY = CPlayer::GetInstance()->GetPosY();
+
+			tVector2D tOrigin;
+			tOrigin.fX = msg->GetOwner()->GetPosX();
+			tOrigin.fY = msg->GetOwner()->GetPosY();
+
+			tVector2D velocity = Vector2DNormalize(tDestination-tOrigin) * 100;
+
+			pBullet->SetPosX(msg->GetOwner()->GetPosX());
+			pBullet->SetPosY(msg->GetOwner()->GetPosY());
+
+			pBullet->SetVelX(velocity.fX);
+			pBullet->SetVelY(velocity.fY);
+
+			CObjectManager::GetInstance()->AddObject(pBullet);
+			SAFE_RELEASE(pBullet);
+
+			break;
+		}
+	case MSG_DESTROY_BULLET:
+		{
+			CDestroyBulletMessage *msg = (CDestroyBulletMessage*)message;
+			CObjectManager::GetInstance()->RemoveObject(msg->GetBulletToDestroy());
+
+			break;
+		}
+
 	default:
 		break;
 	}

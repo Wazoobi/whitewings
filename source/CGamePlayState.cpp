@@ -26,6 +26,8 @@ CGamePlayState::CGamePlayState(void)
 	m_pDI = CSGD_DirectInput::GetInstance();
 	m_pOF = NULL;
 	m_pOM = NULL;
+	m_pTileManager = NULL;
+	
 	pGame = CGame::GetInstance();
 
 	m_pGodMode = NULL;
@@ -61,8 +63,12 @@ void CGamePlayState::Enter(void)
 
 	m_pOF = CSGD_ObjectFactory<string, CBase>::GetInstance();
 	m_pOM = CObjectManager::GetInstance();
+	m_pTileManager = CTileManager::GetInstance();
+	m_pTileManager->InitManager();
 
 	// TODO : Register Class Types through the ObjectFactory HERE
+	m_pOF->RegisterClassType<CBase>("CBase");
+	m_pOM->AddObject(CPlayer::GetInstance());
 
 	m_pWM->SetVolume(m_nSoundID,pGame->GetBGMVolume());
 	m_pWM->SetPan(m_nSoundID,pGame->GetRightPan() * 2 - 100);
@@ -84,7 +90,12 @@ void CGamePlayState::Exit(void)
 		m_pOF->ShutdownObjectFactory();
 		m_pOF = NULL;
 	}
-
+	if(m_pTileManager)
+	{
+		m_pTileManager->ReleaseManager();
+		m_pTileManager = NULL;
+	}
+		
 	m_pOM->DeleteInstance();
 }
 
@@ -132,6 +143,7 @@ void CGamePlayState::Update(float fElapsedTime)
 {
 	m_pOM->UpdateObjects(fElapsedTime);
 	m_pOM->CheckCollisions();
+	m_pTileManager->Update(CPlayer::GetInstance());
 	CMessageManager::GetInstance()->ProcessMessages();
 	CSGD_EventSystem::GetInstance()->ProcessEvents();
 }
@@ -142,6 +154,7 @@ void CGamePlayState::Render(void)
 	//m_pTM->Draw(m_nBackgroundID, 0, 0, 1.25f, 1.0f);
 	m_pOM->SortObjects();
 	m_pOM->RenderObjects();
+	m_pTileManager->Render();
 	
 	//char buffer[128];
 	//sprintf_s(buffer, _countof(buffer), "W00T");

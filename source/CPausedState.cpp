@@ -77,8 +77,7 @@ bool CPausedState::Input(void)
 			pGame->PopState();
 			break;
 		case 1:
-			pGame->PopState();
-			pGame->PopState();
+			pGame->ClearStates();
 			pGame->PushState(CMainMenuState::GetInstance());
 			break;
 

@@ -25,7 +25,18 @@ class CPlayer : public CBase
 	int		m_nHealth;
 	int		m_nHackOrbs;
 	int		m_nDirection;	// 0 is Left. 1 is Right.
+	
 	int		m_nImageID;
+	int		m_nHackableImageID;
+	bool	m_bDrawHackableImage;
+
+	float	m_fGravity;
+	float	m_fGravityTimer;
+
+	int		m_nCollisionType;	// 0 = no collision, 1 = collision on right, 2 = collision on left, 3 = collision from above, 4 = collision from below
+
+	float	m_fInvulnerableTimer;
+	bool	m_bIsInvulnerable;
 
 
 	CPlayer();
@@ -38,9 +49,18 @@ public:
 	static CPlayer* GetInstance();
 
 	inline int GetDirection() const	{return m_nDirection;}
-	inline int GetHackOrbs() const	{return m_nDirection;}
+	inline int GetHackOrbs() const	{return m_nHackOrbs;}
+	inline int GetHealth() const	{return m_nHealth;}
+	inline bool GetInvulnerable() const	{return m_bIsInvulnerable;}
+	inline bool GetIsJumping() const	{return m_bIsJumping;}
 
 	void SetHackOrbs(int nHackOrbs)	{m_nHackOrbs = nHackOrbs;}
+	void SetHealth(int nHealth)		{m_nHealth = nHealth;}
+	void SetInvulnerable(bool bInvulnerable)	{m_bIsInvulnerable = bInvulnerable;}
+	void SetIsJumping(bool bIsJumping)			{m_bIsJumping = bIsJumping;}
+
+
+	void ResetPlayer();
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Checks for collision

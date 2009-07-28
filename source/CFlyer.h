@@ -5,6 +5,14 @@
 class CFlyer : public CEnemy
 {
 
+	int m_nImageID;
+
+	float m_fFireRange;
+	float m_fShotDelay;
+	float m_fShotTimer;
+
+	int m_nDetectionRangeImageID;
+
 public:
 	CFlyer();
 	~CFlyer();

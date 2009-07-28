@@ -27,6 +27,8 @@ class CHackingState : public IGameState
 	CGame					*pGame;
 
 	int						m_nBackgroundID;
+
+	int						m_nTerminalSignature;
 	
 	// Avatar Members
 	int		nAvatarImageID;
@@ -43,6 +45,10 @@ class CHackingState : public IGameState
 	CHackingState& operator=(const CHackingState& );
 
 public:
+
+	inline int GetTerminalSignature() const	{return m_nTerminalSignature;}
+
+	void SetTerminalSignature(int nTerminalSignature)	{m_nTerminalSignature = nTerminalSignature;}
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Get Instance

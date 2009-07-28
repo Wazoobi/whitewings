@@ -44,7 +44,10 @@ void CObjectManager::UpdateObjects(float fElapsedTime)
 void CObjectManager::RenderObjects(void)
 {
 	for (unsigned int i=0; i < m_vObjectList.size(); i++)
+	{
+		// TODO: if object is within camera bounds, then do this
 		m_vObjectList[i]->Render();
+	}
 }
 
 void CObjectManager::AddObject(CBase* pObject)

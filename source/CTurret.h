@@ -4,6 +4,13 @@
 
 class CTurret : public CEnemy
 {
+
+	int m_nImageID;
+
+	float m_fFireRange;
+	float m_fShotDelay;
+	float m_fShotTimer;
+
 public:
 	CTurret();
 	~CTurret();

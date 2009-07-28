@@ -318,17 +318,6 @@ int CSGD_TextureManager::GetTextureHeight(int nID)
 	return m_Textures[nID].Height;
 }
 
-string CSGD_TextureManager::GetTextureFilename(int nID)
-{
-	// Make sure the nID is in range.
-	assert(nID > -1 && nID < (int)m_Textures.size() && "nID is out of range");
-	// Make sure that the texture is valid
-	assert(m_Textures[nID].texture != NULL && "Texture is NULL.  Possible unloaded Texture.");
-
-	return m_Textures[nID].filename;
-}
-
-
 ///////////////////////////////////////////////////////////////////
 //	Function:	"DrawTexture"
 //

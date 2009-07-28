@@ -1,5 +1,7 @@
 #include "CJumper.h"
 
+#include "SGD Wrappers/CSGD_TextureManager.h"
+
 CJumper::CJumper()
 {
 	m_uiState = PATROL;
@@ -13,6 +15,8 @@ CJumper::CJumper()
 	SetPosY(0.0f);
 	SetVelX(0.0f);
 	SetVelY(0.0f);
+
+	m_nImageID = CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/Jumper.bmp");
 }
 
 CJumper::~CJumper()
@@ -34,4 +38,7 @@ void CJumper::Update(float fElapsedTime)
 void CJumper::Render(void)
 {
 	// TODO: See CBase Render TODO
+
+	CEnemy::Render();
+	CSGD_TextureManager::GetInstance()->Draw(m_nImageID, GetPosX(), GetPosY());
 }

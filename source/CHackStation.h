@@ -9,11 +9,17 @@ class CHackStation : public CBase
 
 	unsigned int m_uiHackType;
 
+	int m_nTerminalSignature;
+
 public:
 	enum {DOOR, REPAIR, LEVEL};
 
 	CHackStation();
 	~CHackStation();
+
+	inline int GetTerminalSignature() const	{return m_nTerminalSignature;}
+
+	void SetTerminalSignature(int nTerminalSignature)	{m_nTerminalSignature = nTerminalSignature;}
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Checks for collision
