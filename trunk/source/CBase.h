@@ -17,7 +17,7 @@ protected:
 	unsigned int m_uiRefCount;
 
 public:
-	enum { OBJ_BASE, OBJ_ENEMY, OBJ_BULLET, OBJ_STUNSHOT, OBJ_PLAYER, OBJ_HACKORB, OBJ_HACKSTATION };
+	enum { OBJ_BASE, OBJ_ENEMY, OBJ_BULLET, OBJ_STUNSHOT, OBJ_PLAYER, OBJ_HACKORB, OBJ_HACKSTATION, OBJ_DOOR };
 
 	CBase(void);
 	virtual ~CBase(void);

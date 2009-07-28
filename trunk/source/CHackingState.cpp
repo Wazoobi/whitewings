@@ -11,6 +11,8 @@
 #include "CMainMenuState.h"
 #include "COptionsState.h"
 
+#include "CSGD_EventSystem.h"
+
 #include "CPlayer.h"
 
 CHackingState::CHackingState(void)
@@ -31,6 +33,8 @@ CHackingState::CHackingState(void)
 	m_nBackgroundID = 0;
 
 	SetStateType(HACKING);
+
+	m_nTerminalSignature = 0;
 }
 
 CHackingState::~CHackingState(void)
@@ -77,11 +81,16 @@ bool CHackingState::Input(void)
 
 void CHackingState::Update(float fElapsedTime)
 {
-	if((m_pDI->KeyDown(DIK_Z) || m_pDI->JoystickGetRStickDirDown(DIR_LEFT,0)) && fPosX > (nWidth))
+	if((m_pDI->KeyDown(DIK_LEFT) || m_pDI->JoystickGetLStickDirDown(DIR_LEFT,0)) && fPosX > (nWidth))
 		fPosX = (fPosX-fVelX*fElapsedTime);
 
-	if((m_pDI->KeyDown(DIK_X) || m_pDI->JoystickGetRStickDirDown(DIR_RIGHT,0)) && fPosX < (pGame->GetScreenWidth()-nWidth))
+	if((m_pDI->KeyDown(DIK_RIGHT) || m_pDI->JoystickGetLStickDirDown(DIR_RIGHT,0)) && fPosX < (pGame->GetScreenWidth()-nWidth))
 		fPosX = (fPosX+fVelX*fElapsedTime);
+
+	// TODO: Send off a mini-game win event if the player finishes the mini-game
+
+// 	if(win tile triggered)
+// 		CSGD_EventSystem::GetInstance()->SendEvent("MINIGAMESUCCESS", m_nTerminalSignature);
 }
 
 void CHackingState::Render(void)

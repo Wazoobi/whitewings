@@ -5,6 +5,8 @@
 class CJumper : public CEnemy
 {
 
+	int m_nImageID;
+
 public:
 	CJumper();
 	~CJumper();

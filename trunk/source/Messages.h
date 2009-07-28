@@ -14,8 +14,10 @@ typedef int MSGID;
 class CPlayer;
 class CStunShot;
 class CHackOrb;
+class CBase;
+class CBullet;
 
-enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_STUNSHOT, MSG_DESTROY_STUNSHOT, MSG_DESTROY_HACKORB, MSG_MAX };
+enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_STUNSHOT, MSG_DESTROY_STUNSHOT, MSG_DESTROY_HACKORB, MSG_CREATE_BULLET, MSG_DESTROY_BULLET, MSG_MAX };
 
 class CBaseMessage
 {
@@ -69,4 +71,30 @@ public:
 	~CDestroyHackOrbMessage();
 
 	CHackOrb* GetHackOrbToDestroy()	{return m_pHackOrb;}
+};
+
+class CCreateBulletMessage : public CBaseMessage
+{
+
+	// TODO: Change to compensate for singleton
+	CBase*	m_pOwner;
+
+public:
+	CCreateBulletMessage(CBase* _pOwner);
+	~CCreateBulletMessage();
+
+	CBase* GetOwner()	{return m_pOwner;}
+};
+
+class CDestroyBulletMessage : public CBaseMessage
+{
+private:
+	CBullet*	m_pBullet;
+
+public:
+	CDestroyBulletMessage(CBullet* _pBullet);
+	~CDestroyBulletMessage();
+
+	CBullet* GetBulletToDestroy() {return m_pBullet;}
+
 };

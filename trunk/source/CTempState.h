@@ -17,6 +17,8 @@
 #include "CSGD_ObjectFactory.h"
 #include "CObjectManager.h"
 
+#include "CLogger.h"
+
 class CPlayer;
 
 class CTempState : public IGameState
@@ -33,6 +35,8 @@ class CTempState : public IGameState
 	int						m_nBackgroundID;
 
 	CPlayer					*m_pPlayer;
+
+	vector<CLogger*>		m_vLoggers;
 
 	CTempState(void);
 	~CTempState(void);

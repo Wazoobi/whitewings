@@ -14,7 +14,7 @@
 
 CHackOrb::CHackOrb(void)
 {
-	m_nImageID = CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/JuM_SpecialMissile.bmp", D3DCOLOR_XRGB(0,0,0));
+	m_nImageID = CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/HackOrb.bmp");
 
 	m_nDisplayDepth = 1;	// Z-sorting
 	m_uiRefCount = 1;		// Always start with a reference to yourself

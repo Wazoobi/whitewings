@@ -16,7 +16,7 @@ class CEnemy : public CBase
 protected:
 	unsigned int m_uiState;			// Used for state driven AI
 	unsigned int m_uiEnemyType;		// Used for Hacking powers on the player's side
-	int m_nDetectionRange;				// The distance the player must be within to cause the enemy to go into CHASE state
+	int m_fDetectionRange;				// The distance the player must be within to cause the enemy to go into CHASE state
 	float m_fStunnedTimer;
 	float m_fAlertTimer;
 
@@ -33,7 +33,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	inline unsigned int GetState() const			{return m_uiState;}
 	inline unsigned int GetEnemyType() const		{return m_uiEnemyType;}
-	inline int GetDetectionRange() const			{return m_nDetectionRange;}
+	inline int GetDetectionRange() const			{return m_fDetectionRange;}
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Modifiers
@@ -42,7 +42,8 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void SetState(unsigned int uiState)				{m_uiState = uiState;}
 	void SetEnemyType(unsigned int uiEnemyType)		{m_uiEnemyType = uiEnemyType;}
-	void SetDetectionRange(int nDetectionRange)		{m_nDetectionRange = nDetectionRange;}
+	void SetDetectionRange(int nDetectionRange)		{m_fDetectionRange = nDetectionRange;}
+	void SetStunnedTimer(float fStunnedTimer)		{m_fStunnedTimer = fStunnedTimer;}
 
 	//////////////////////////////////////////////////////////////////////////
 	//	Function	:	Checks for collision

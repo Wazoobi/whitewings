@@ -14,7 +14,7 @@ CEnemy::CEnemy()
 
 	m_uiState = PATROL;
 	m_uiEnemyType = WALKER;
-	m_nDetectionRange = 200.0f;
+	m_fDetectionRange = 200.0f;
 
 	m_nDisplayDepth = 1;	// Z-sorting
 	m_uiRefCount = 1;		// Always start with a reference to yourself
@@ -47,78 +47,6 @@ void CEnemy::Update(float fElapsedTime)
 	// TODO: Implement switch based on m_uiState
 	// TODO: Check the distance between the player and the enemy.
 	// TODO: If the player is within the view radius, change the enemies state to chase.
-
-	switch (m_uiState)
-	{
-	case PATROL:
-		{
-			SetPosX(GetPosX() - GetVelX()*fElapsedTime);
-
-			tVector2D currentPosVector;
-			currentPosVector.fX = GetPosX();
-			currentPosVector.fY = GetPosY();
-
-			tVector2D playerPosVector;
-			playerPosVector.fX = CPlayer::GetInstance()->GetPosX();
-			playerPosVector.fY = CPlayer::GetInstance()->GetPosY();
-
-			if(Vector2DLength(currentPosVector - playerPosVector) < m_nDetectionRange)
-				m_uiState = CHASE;
-			break;
-		}
-	case CHASE:
-		{
-			SetPosX(GetPosX() - GetVelX()*2*fElapsedTime);
-
-			tVector2D currentPosVector;
-			currentPosVector.fX = GetPosX();
-			currentPosVector.fY = GetPosY();
-
-			tVector2D playerPosVector;
-			playerPosVector.fX = CPlayer::GetInstance()->GetPosX();
-			playerPosVector.fY = CPlayer::GetInstance()->GetPosY();
-
-			if(Vector2DLength(currentPosVector - playerPosVector) > m_nDetectionRange)
-				m_uiState = PATROL;
-			break;
-		}
-	case ATTACK:
-		{
-			break;
-		}
-	case STUNNED:
-		{
-			m_fStunnedTimer += fElapsedTime;
-			if(m_fStunnedTimer > STUN_DURATION)
-			{
-				m_fStunnedTimer = 0.0f;
-				m_uiState = PATROL;
-			}
-			break;
-		}
-	case HACKED:
-		{
-			if(CPlayer::GetInstance()->GetDirection() == 0)
-				SetPosX(CPlayer::GetInstance()->GetPosX() - 32);
-			else
-				SetPosX(CPlayer::GetInstance()->GetPosX() + 32);
-
-			break;
-		}
-	case ALERT:
-		{
-			m_fAlertTimer += fElapsedTime;
-			if(m_fAlertTimer > ALERT_TIME)
-			{
-				m_fAlertTimer = 0.0f;
-				m_uiState = PATROL;
-			}
-			break;
-		}
-	}
-
-	if(GetPosX() < -32.0f)
-		SetPosX(832.0f);
 }
 
 void CEnemy::Render(void)
@@ -165,12 +93,12 @@ void CEnemy::Render(void)
 	CSGD_Direct3D::GetInstance()->DeviceEnd();
 
 	CSGD_Direct3D::GetInstance()->DrawText(szCurrentState, GetPosX(), GetPosY() - 32);
-// 	CSGD_Direct3D::GetInstance()->DrawLine(GetPosX(), GetPosY(), GetPosX()-200.0f, GetPosY(), 255, 0, 0);
-// 	CSGD_Direct3D::GetInstance()->DrawLine(GetPosX(), GetPosY(), GetPosX()+200.0f, GetPosY(), 128, 0, 0);
+//  	CSGD_Direct3D::GetInstance()->DrawLine(GetPosX(), GetPosY(), GetPosX()-m_fDetectionRange, GetPosY(), 255, 0, 0);
+//  	CSGD_Direct3D::GetInstance()->DrawLine(GetPosX(), GetPosY(), GetPosX()+m_fDetectionRange, GetPosY(), 128, 0, 0);
 
 	CSGD_Direct3D::GetInstance()->DeviceBegin();
 	CSGD_Direct3D::GetInstance()->SpriteBegin();
-	
+
 	if(m_uiState == PATROL)
 		CSGD_TextureManager::GetInstance()->Draw(m_nDetectionRangeImageID, GetPosX() - (252.0f * 0.80f), GetPosY() - (232.0f * 0.80f), 0.80f, 0.80f);
 

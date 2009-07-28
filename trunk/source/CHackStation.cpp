@@ -13,7 +13,7 @@
 
 CHackStation::CHackStation(void)
 {
-	m_nImageID = CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/JuM_BaseBlock.bmp");
+	m_nImageID = CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/HackTerminal.bmp");
 
 	m_uiHackType = DOOR;
 
@@ -24,6 +24,8 @@ CHackStation::CHackStation(void)
 	SetPosY(0.0f);
 	SetVelX(0.0f);
 	SetVelY(0.0f);
+
+	m_nTerminalSignature = 0;
 }
 
 CHackStation::~CHackStation(void)

@@ -80,8 +80,8 @@ bool CMainMenuState::Input(void)
 		{
 		case 0:
 			pGame->PopState();
-			//pGame->PushState(CGamePlayState::GetInstance());
-			pGame->PushState(CTempState::GetInstance());
+			pGame->PushState(CGamePlayState::GetInstance());
+			//pGame->PushState(CTempState::GetInstance());
 			break;
 		case 1:
 			pGame->PopState();
