@@ -38,7 +38,15 @@ CHowToPlayState* CHowToPlayState::GetInstance(void)
 void CHowToPlayState::Enter(void)
 {
 	//TODO: Change Background
-	m_nBackgroundID = m_pTM->LoadTexture("resource/graphics/JuM_MissileCommand_BasicBackground.bmp");
+	m_nBackgroundID = m_pTM->LoadTexture("resource/graphics/WW_HowToPlay1.png");
+	m_nPlayerID = m_pTM->LoadTexture("resource/graphics/Ping.bmp");
+	m_nWalkerID = m_pTM->LoadTexture("resource/graphics/Walker.bmp");
+	m_nHackOrbID = m_pTM->LoadTexture("resource/graphics/JuM_SpecialMissile.bmp");
+	m_nJumperID = m_pTM->LoadTexture("resource/graphics/Jumper.bmp");
+	m_nFlyerID = m_pTM->LoadTexture("resource/graphics/Flyer.bmp");
+	m_nTerminalID = m_pTM->LoadTexture("resource/graphics/HackTerminal.bmp");
+	//m_nDoorID = m_pTM->LoadTexture("resource/graphics/Door.bmp");	Dont have the door image
+
 }
 
 void CHowToPlayState::Exit(void)
@@ -65,5 +73,19 @@ void CHowToPlayState::Update(float fElapsedTime)
 void CHowToPlayState::Render(void)
 {
 	//TODO: Change Background
-	m_pTM->Draw(m_nBackgroundID,0, 0, 1, 1, 0, 0, 0, 0, D3DCOLOR_ARGB(255, 0, 0, 0));
+	m_pTM->Draw(m_nBackgroundID,0, 0, 1.57f, 1.18f);
+	m_pTM->Draw(m_nPlayerID,500, 120);
+	m_pTM->Draw(m_nWalkerID,460, 185);
+	m_pTM->Draw(m_nJumperID,500, 185);
+	m_pTM->Draw(m_nFlyerID,540, 185);
+
+	m_pTM->Draw(m_nTerminalID,500, 280);
+
+	m_pTM->Draw(m_nHackOrbID,500, 390);
+	
+	m_pTM->Draw(m_nTerminalID,500, 510);
+
+
+
+
 }

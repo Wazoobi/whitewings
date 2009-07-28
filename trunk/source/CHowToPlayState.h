@@ -25,6 +25,13 @@ class CHowToPlayState : public IGameState
 	CGame					*pGame;
 
 	int m_nBackgroundID;
+	int m_nPlayerID;
+	int m_nWalkerID;
+	int m_nHackOrbID;
+	int m_nJumperID;
+	int m_nFlyerID;
+	int m_nTerminalID;
+	int m_nDoorID;
 
 	CHowToPlayState(void);
 	~CHowToPlayState(void);

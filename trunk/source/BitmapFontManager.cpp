@@ -71,7 +71,7 @@ bool BitmapFontManager::DrawString(string szText, int nFontImageID, int nPosX, i
 		for (int i = 0; i < szText.length();i++)
 		{
 			if (szText[i] == ' ')
-				nNetWidth += 32;
+				nNetWidth += (16 * fScaleX);
 			else 
 			{
 				RECT section;
@@ -84,7 +84,7 @@ bool BitmapFontManager::DrawString(string szText, int nFontImageID, int nPosX, i
 							if (m_vFonts[j].CharRects[k].character == szText[i])
 							{
 								section = m_vFonts[j].CharRects[k].bounding;
-								toadd = section.right - section.left;
+								toadd = (section.right - section.left) * fScaleX;
 							}
 							
 
@@ -93,7 +93,7 @@ bool BitmapFontManager::DrawString(string szText, int nFontImageID, int nPosX, i
 				}
 			
 			CSGD_TextureManager::GetInstance()->Draw(nFontImageID,nPosX + nNetWidth, nPosY,fScaleX,fScaleY,&section,0,0,0,dwTransparencyColor);
-			nNetWidth += (toadd + 8) ;
+			nNetWidth += (toadd + (8 * fScaleX)) ;
 			}
 		}
 
