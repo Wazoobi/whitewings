@@ -13,6 +13,8 @@
 #include "CHowToPlayState.h"
 #include "CHackingState.h"
 
+#include "CGameOverState.h"
+
 #include "BitmapFontManager.h"
 
 #include "CTempState.h"
@@ -98,7 +100,7 @@ bool CMainMenuState::Input(void)
 			pGame->PushState(CHowToPlayState::GetInstance());
 			break;
 		case 3:
-			pGame->PushState(CCreditsState::GetInstance());
+			pGame->PushState(CGameOverState::GetInstance());
 			break;
 		case 4:
 			return false;

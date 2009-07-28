@@ -74,7 +74,8 @@ bool CGameOverState::Input(void)
 		{
 		case 0:
 			pGame->ClearStates();
-			pGame->PushState(CGamePlayState::GetInstance());
+			pGame->PushState(CMainMenuState::GetInstance());
+			//pGame->PushState(CGamePlayState::GetInstance());		//TODO: Allow for player continue
 			break;
 		case 1:
 			pGame->ClearStates();
