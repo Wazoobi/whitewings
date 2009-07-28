@@ -1,0 +1,35 @@
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.CustomControl1.resources
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Administrator\Desktop\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.CustomControl1.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ImportDialog.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Items.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Tile_Set.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Event_String.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\bin\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\bin\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.CustomControl1.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.Event_String.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.ImportDialog.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.Items.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.Tile_Set.resources
+C:\Documents and Settings\Administrator\Desktop\SGP\Sprint 2\Tile Editor\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
