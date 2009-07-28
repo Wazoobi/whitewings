@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<charrects>
+  <filename name="C:/Documents and Settings/Matt/My Documents/SGP/BitmapFontEditor/WindowsFormsApplication1/Resources/RiC_Font.PNG" />
+  <charrect char="A" x="0" y="0" width="48" height="36" offset="0" />
+  <charrect char="B" x="50" y="0" width="49" height="37" offset="0" />
+  <charrect char="C" x="100" y="0" width="50" height="38" offset="0" />
+  <charrect char="D" x="150" y="0" width="49" height="38" offset="0" />
+  <charrect char="E" x="202" y="0" width="47" height="38" offset="0" />
+  <charrect char="F" x="252" y="0" width="48" height="38" offset="0" />
+  <charrect char="G" x="302" y="0" width="46" height="38" offset="0" />
+  <charrect char="H" x="350" y="0" width="50" height="37" offset="0" />
+  <charrect char="I" x="422" y="0" width="8" height="36" offset="0" />
+  <charrect char="J" x="452" y="0" width="48" height="38" offset="0" />
+  <charrect char="K" x="0" y="40" width="48" height="38" offset="0" />
+  <charrect char="L" x="50" y="40" width="49" height="38" offset="0" />
+  <charrect char="M" x="101" y="39" width="47" height="39" offset="0" />
+  <charrect char="N" x="151" y="40" width="48" height="37" offset="0" />
+  <charrect char="O" x="202" y="40" width="48" height="37" offset="0" />
+  <charrect char="P" x="251" y="40" width="49" height="36" offset="0" />
+  <charrect char="Q" x="301" y="38" width="51" height="40" offset="0" />
+  <charrect char="R" x="351" y="38" width="48" height="40" offset="0" />
+  <charrect char="S" x="400" y="39" width="49" height="39" offset="0" />
+  <charrect char="T" x="452" y="39" width="48" height="38" offset="0" />
+  <charrect char="U" x="0" y="81" width="49" height="36" offset="0" />
+  <charrect char="V" x="52" y="79" width="47" height="37" offset="0" />
+  <charrect char="W" x="101" y="80" width="49" height="36" offset="0" />
+  <charrect char="X" x="152" y="79" width="46" height="38" offset="0" />
+  <charrect char="Y" x="202" y="80" width="44" height="36" offset="0" />
+  <charrect char="Z" x="253" y="79" width="47" height="38" offset="0" />
+  <charrect char="." x="304" y="110" width="8" height="7" offset="31" />
+  <charrect char="!" x="319" y="78" width="9" height="39" offset="0" />
+  <charrect char="?" x="333" y="79" width="50" height="38" offset="0" />
+</charrects>
