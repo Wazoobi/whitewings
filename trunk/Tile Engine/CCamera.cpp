@@ -66,12 +66,12 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 	if(GetCameraPosX() + CGame::GetInstance()->GetScreenWidth() < levelWidth*TILE_WIDTH)
 		YMax	= (short)(GetCameraPosX()/TILE_WIDTH) + (short)(CGame::GetInstance()->GetScreenWidth()/TILE_WIDTH) + 1;
 	else
-		YMax = levelWidth*TILE_WIDTH;
+		YMax = levelWidth;
 
 	if(GetCameraPosY() + CGame::GetInstance()->GetScreenHeight() < levelHeight*TILE_HEIGHT)
 		XMax	= (short)(GetCameraPosY()/TILE_HEIGHT) + (short)(CGame::GetInstance()->GetScreenHeight()/TILE_HEIGHT) + 1;
 	else
-		XMax = levelHeight*TILE_HEIGHT;
+		XMax = levelHeight;
 
 	//======================================================================================================
 	//------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 	for (int curLayer = 0; curLayer < RENDER_LAYER_TOTAL; ++curLayer)
 	{
 		if((GetCameraPosX()/TILE_WIDTH - 1) >= 0)												
-			i = (short)(GetCameraPosX()/TILE_WIDTH) - 1;					
+			i = (short)(GetCameraPosX()/32) - 1;					
 		else																	
 			i = 0;
 
@@ -99,7 +99,7 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 
 			for ( j ; j < XMax; ++j )
 			{
-				if (pRenderArrays[curLayer][i][j].m_shTileImageIndex != -1 || pRenderArrays[curLayer][i][j].m_bIsCollideable)
+				if (pRenderArrays[curLayer][i][j].m_shTileImageIndex != -1)
 				{
 					toDrawAt.left		= (LONG)pRenderArrays[curLayer][i][j].m_shX;		//At loop time decide the
 					toDrawAt.top		= (LONG)pRenderArrays[curLayer][i][j].m_shY;		//section. 
@@ -109,10 +109,7 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 					if(!pRenderArrays[curLayer][i][j].m_bIsCollideable)
 						CSGD_TextureManager::GetInstance()->Draw(pRenderArrays[curLayer][i][j].m_shTileImageIndex,
 							(i * TILE_WIDTH) - GetCameraPosX(), j * TILE_WIDTH - GetCameraPosY(), 1, 1, &toDrawAt);
-					else if(pRenderArrays[curLayer][i][j].m_bIsCollideable)
-						CSGD_TextureManager::GetInstance()->Draw(pRenderArrays[curLayer][i][j].m_shTileImageIndex,
-						(i * TILE_WIDTH) - GetCameraPosX(), j * TILE_WIDTH - GetCameraPosY(), 1, 1, &toDrawAt, 0, 0, 0,
-						D3DCOLOR_ARGB(255, 255, 0, 0));
+					
 				}
 			}
 		}
