@@ -23,3 +23,5 @@ C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApp
 C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\BitmapFontEditor.csproj.GenerateResource.Cache
 C:\Documents and Settings\Matt\My Documents\SGP\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Colors.resources
+C:\Documents and Settings\Matt\My Documents\SGP\SVN\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Matt\My Documents\SGP\SVN\BitmapFontEditor\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
