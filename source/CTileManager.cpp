@@ -15,6 +15,12 @@
 #include "SGD Wrappers/CSGD_Direct3D.h"
 #include "CEvent.h"
 #include "CSGD_EventSystem.h"
+#include "CFlyer.h"
+#include "CWalker.h"
+#include "CMessageManager.h"
+#include "CObjectManager.h"
+
+
 
 void CTileManager::Update(CPlayer* pPlayer)
 {
@@ -64,8 +70,8 @@ void CTileManager::Update(CPlayer* pPlayer)
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	// Camera Updates
 
-	float newPosX = pPlayer->GetPosX() + pPlayer->GetVelX();// - (CGame::GetInstance()->GetScreenWidth()/3);
-	float newPosY = pPlayer->GetPosY() + pPlayer->GetVelY();// - (CGame::GetInstance()->GetScreenHeight()/4);
+	float newPosX = (pPlayer->GetPosX() ) - (CGame::GetInstance()->GetScreenWidth()/4);
+	float newPosY = (pPlayer->GetPosY() ) - (CGame::GetInstance()->GetScreenHeight())/4;
 
 	//XCameraPos Possibilities
 	if (newPosX >= 0 && newPosX + CGame::GetInstance()->GetScreenWidth() < (m_pLevels[GetCurrentLevel() -1]->GetLevelWidth()*TILE_WIDTH))
@@ -77,12 +83,13 @@ void CTileManager::Update(CPlayer* pPlayer)
 
 	//YCameraPos Possibilities
 	if(newPosY >= 0 && newPosY + CGame::GetInstance()->GetScreenHeight() < (m_pLevels[GetCurrentLevel() - 1]->GetLevelHeight()*TILE_HEIGHT))
+
 		m_pCamera->SetCameraPosY(newPosY);
 	else if(newPosY < 0)
 		m_pCamera->SetCameraPosY(0);
 	else
 		m_pCamera->SetCameraPosY((m_pLevels[GetCurrentLevel() - 1]->GetLevelHeight()*TILE_HEIGHT) - CGame::GetInstance()->GetScreenHeight());
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -92,8 +99,24 @@ void CTileManager::Update(CPlayer* pPlayer)
 void CTileManager::Render()
 {
 	m_pCamera->RenderLevel(m_pLevels[GetCurrentLevel() - 1]->GetRenderArrays(), m_pLevels[GetCurrentLevel() - 1]->GetLevelWidth(),
-							m_pLevels[GetCurrentLevel() - 1]->GetLevelHeight());
-	
+		m_pLevels[GetCurrentLevel() - 1]->GetLevelHeight());
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (m_pSpawnPoints[i].m_fX > m_pCamera->GetCameraPosX() && 
+			m_pSpawnPoints[i].m_fX < m_pCamera->GetCameraPosX() + CGame::GetInstance()->GetScreenWidth() && 
+			m_pSpawnPoints[i].m_fY > m_pCamera->GetCameraPosY() && 
+			m_pSpawnPoints[i].m_fY < m_pCamera->GetCameraPosY() + CGame::GetInstance()->GetScreenHeight() &&
+			m_pSpawnPoints[i].m_bIsActive)
+		{
+			//CMessageManager::GetInstance()->SendMsg(new CCreateStunShotMessage(this));
+
+			m_pSpawnPoints[i].m_eEnemyToSpawn->SetVelY(100);
+
+			CObjectManager::GetInstance()->AddObject(m_pSpawnPoints[i].m_eEnemyToSpawn);
+			m_pSpawnPoints[i].m_bIsActive = false;
+		}
+	}
 }
 
 void CTileManager::InitManager()
@@ -106,7 +129,7 @@ void CTileManager::InitManager()
 	}
 
 	m_pLevels[0]->LoadLevel("resource/data/level.bin", 1);
-	m_pLevels[0]->SetLevelImageID(CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/colors.bmp"));
+	m_pLevels[0]->SetLevelImageID(CSGD_TextureManager::GetInstance()->LoadTexture("resource/graphics/DaS_TestTileSet.bmp"));
 
 	for (int i = 0; i < 3; ++i)
 	{
@@ -122,14 +145,34 @@ void CTileManager::InitManager()
 		}
 	}
 
+	m_pSpawnPoints = new SpawnPoint[3];
+
+	CWalker* pWalker = new CWalker();
+	m_pSpawnPoints[0].m_fX = 150;
+	m_pSpawnPoints[0].m_fY = 300;
+	m_pSpawnPoints[0].m_eEnemyToSpawn = (CEnemy*)pWalker;
+	m_pSpawnPoints[0].m_bIsActive = true;
+
+	CFlyer* pFlyer = new CFlyer();
+	m_pSpawnPoints[1].m_fX = 500;
+	m_pSpawnPoints[1].m_fY = 800;
+	m_pSpawnPoints[1].m_eEnemyToSpawn = (CEnemy*)pFlyer;
+	m_pSpawnPoints[1].m_bIsActive = true;
+
+	CWalker* pWalkers = new CWalker();
+	m_pSpawnPoints[2].m_fX = 800;
+	m_pSpawnPoints[2].m_fY = 800;
+	m_pSpawnPoints[2].m_eEnemyToSpawn = (CEnemy*)pWalkers;
+	m_pSpawnPoints[2].m_bIsActive = true;
+
 	SetCurrentLevel(1);
-	
+
 }
 
 void CTileManager::CheckLevelCollisions(CBase* pObject, CCamera* pCamera)
 {
 	CLevel::Tile** CollisionLayer = m_pLevels[GetCurrentLevel() - 1]->GetRenderArrays()[2];
-	CLevel::Tile** TriggerLayer = m_pLevels[GetCurrentLevel() - 1]->GetRenderArrays()[3];
+	//CLevel::Tile** TriggerLayer = m_pLevels[GetCurrentLevel() - 1]->GetRenderArrays()[3];
 
 	RECT CollisionRect = pObject->GetRect();										//The objects collision RECT
 	RECT CollisionType = {0,0,0,0};													//The RECT that will result from the collision check
@@ -154,83 +197,110 @@ void CTileManager::CheckLevelCollisions(CBase* pObject, CCamera* pCamera)
 
 				}
 
-			if (CollisionLayer[i][j].m_bIsCollideable)
-			{
-				CollisionCheck.left = i * TILE_WIDTH  - m_pCamera->GetCameraPosX();
-				CollisionCheck.top = j * TILE_HEIGHT - m_pCamera->GetCameraPosY();
-				CollisionCheck.right = CollisionCheck.left + TILE_WIDTH;
-				CollisionCheck.bottom = CollisionCheck.top + TILE_HEIGHT;
-
-				
-
-				if (IntersectRect(&CollisionType, &CollisionCheck, &CollisionRect))
+				if (CollisionLayer[i][j].m_bIsCollideable)
 				{
-
-					if (CollisionType.top < CollisionRect.bottom && CollisionType.bottom > CollisionCheck.top &&
-						CollisionType.bottom - CollisionType.top < CollisionType.right - CollisionType.left && 
-						CollisionRect.top > CollisionCheck.top)
+					if(pObject->GetObjectType() == 4)//Player
 					{
-						//-------------------------------------------------------------------------
-						//If this is a case where the object has hit the bottom of the level's tile
+						CollisionCheck.left = i * TILE_WIDTH - m_pCamera->GetCameraPosX();
+						CollisionCheck.top = j * TILE_HEIGHT - m_pCamera->GetCameraPosY();
+						CollisionCheck.right = CollisionCheck.left + TILE_WIDTH;
+						CollisionCheck.bottom = CollisionCheck.top + TILE_HEIGHT;
+					}
+					else
+					{
+						CollisionCheck.left = i * TILE_WIDTH - m_pCamera->GetCameraPosX();
+						CollisionCheck.top = j * TILE_HEIGHT - m_pCamera->GetCameraPosY();
+						CollisionCheck.right = CollisionCheck.left + TILE_WIDTH;
+						CollisionCheck.bottom = CollisionCheck.top + TILE_HEIGHT;
 
-						pObject->SetPosY(CollisionCheck.bottom);
-						//pObject->SetVelY(-pObject->GetVelY());
+					}
 
-						// TODO Implement this code
-						/*if(pObject->GetObjectType() == OBJ_PLAYER);
+
+					if (IntersectRect(&CollisionType, &CollisionCheck, &CollisionRect))
+					{
+
+						if (CollisionType.top < CollisionRect.bottom && CollisionType.bottom > CollisionCheck.top &&
+							CollisionType.bottom - CollisionType.top < CollisionType.right - CollisionType.left && 
+							CollisionRect.top > CollisionCheck.top)
 						{
-						CPlayer* pPlayer = (CPlayer*)pObject;
-						pPlayer->SetIsJumping(false);
-						}*/
+							//-------------------------------------------------------------------------
+							//If this is a case where the object has hit the bottom of the level's tile
+
+							pObject->SetPosY(CollisionCheck.bottom);
+							
+						}
+						else if(CollisionType.top < CollisionCheck.bottom && CollisionType.bottom > CollisionRect.top &&
+							CollisionType.bottom - CollisionType.top < CollisionType.right - CollisionType.left)
+						{
+							//--------------------------------------------------------------------
+							// If this is a case where the object has fallen onto the level's tile
+
+							pObject->SetPosY(CollisionCheck.top - TILE_HEIGHT);
+							if(pObject->GetObjectType() == 1) //if its an enemy
+							{
+								pObject->SetPosY(CollisionCheck.top);
+							}
+								pObject->SetVelY(0);
+
+							if(pObject->GetObjectType() == 4) // if this is a player class
+								CPlayer::GetInstance()->SetIsJumping(false);
+
+						}
+						else if(CollisionType.left < CollisionRect.right && CollisionType.right > CollisionCheck.left &&
+							CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left &&
+							CollisionRect.left < CollisionCheck.left)
+						{
+
+							//--------------------------------------------------------------------------------
+							//If this is a case where the object has collided with the level's tile's left side
+
+							pObject->SetPosX(CollisionCheck.left - TILE_WIDTH);
+							if(pObject->GetObjectType() == 1)
+							{
+								pObject->SetVelX(pObject->GetVelX() * -1);
+							}
+
+						}
+						else if(CollisionType.right > CollisionRect.left && CollisionType.left < CollisionCheck.right &&
+							CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left)
+						{
+							//-------------------------------------------------------------------------------
+							//If this is a case where the object has collided with the level's tile's right side
+
+							pObject->SetPosX(CollisionCheck.right);
+							if(pObject->GetObjectType() == 1)
+							{
+								pObject->SetVelX(pObject->GetVelX() * -1);
+							}
+						}
+						else if(CollisionType.top < CollisionCheck.bottom && CollisionType.bottom > CollisionRect.top && //
+							CollisionType.bottom - CollisionType.top == CollisionType.right - CollisionType.left && //if its a corner
+							CollisionRect.top < CollisionCheck.top ) // to ensure that we are truly on the bottom
+						{
+							//----------------------------------------------------------------------------------
+							//If this is a case of a top corner collision
+
+							pObject->SetPosY(CollisionCheck.top - 32);
+							pObject->SetVelY(0);
+							if(pObject->GetObjectType() == 4)//if we have a player
+							{
+								CPlayer* pPlayer = (CPlayer*)pObject;
+								pPlayer->SetIsJumping(false);
+							}
+
+						}
+						else if(CollisionType.top < CollisionRect.bottom && CollisionType.bottom > CollisionCheck.top &&
+							CollisionType.bottom - CollisionType.top == CollisionType.right - CollisionType.left)
+						{
+							//----------------------------------------------------------------------------------
+							//If this is a case of a bottom corner collision
+
+							pObject->SetPosY(CollisionCheck.bottom);
+							//pObject->SetVelY(-pObject->GetVelY() );
+						}						
 
 					}
-					else if(CollisionType.top < CollisionCheck.bottom && CollisionType.bottom > CollisionRect.top &&
-						CollisionType.bottom - CollisionType.top < CollisionType.right - CollisionType.left)
-					{
-						//--------------------------------------------------------------------
-						// If this is a case where the object has fallen onto the level's tile
-
-	 						pObject->SetPosY(CollisionCheck.top - 32);
-							CPlayer::GetInstance()->SetIsJumping(false);
-					}
-					else if(CollisionType.left < CollisionRect.right && CollisionType.right > CollisionCheck.left &&
-						CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left)
-					{
-						
-						//--------------------------------------------------------------------------------
-						//If this is a case where the object has collided with the level's tile's right side
-
-						pObject->SetPosX(CollisionCheck.right);
-					}
-					else if(CollisionType.right > CollisionRect.left && CollisionType.left < CollisionCheck.right &&
-						CollisionType.bottom - CollisionType.top > CollisionType.right - CollisionType.left)
-					{
-						//-------------------------------------------------------------------------------
-						//If this is a case where the object has collided with the level's tile's left side
-
-						pObject->SetPosX(CollisionCheck.left);
-					}
-					else if(CollisionType.top < CollisionCheck.bottom && CollisionType.bottom > CollisionRect.top && //
-						CollisionType.bottom - CollisionType.top == CollisionType.right - CollisionType.left && //if its a corner
-						CollisionRect.top < CollisionCheck.top ) // to ensure that we are truly on the bottom
-					{
-						//----------------------------------------------------------------------------------
-						//If this is a case of a top corner collision
-
-						pObject->SetPosY(CollisionCheck.top - 32);
-					}
-					else if(CollisionType.top < CollisionRect.bottom && CollisionType.bottom > CollisionCheck.top &&
-						CollisionType.bottom - CollisionType.top == CollisionType.right - CollisionType.left)
-					{
-						//----------------------------------------------------------------------------------
-						//If this is a case of a bottom corner collision
-
-						pObject->SetPosY(CollisionCheck.bottom);
-						//pObject->SetVelY(-pObject->GetVelY() );
-					}						
-
-				}
-			}	
+				}	
 		}
 	}
 

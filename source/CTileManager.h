@@ -14,10 +14,39 @@
 // #include's
 #include "CLevel.h"
 #include "CCamera.h"
+#include "CEnemy.h"
 
 
 class CTileManager
 {
+
+public:
+
+	//////////////////////////////////////////////////////////////////////////
+	// Structure: SpawnPoint()
+	//
+	// Memebers: -float m_fX;
+	//			 -float m_fY;
+	//			 -CEnemy* ToSpawn
+	//////////////////////////////////////////////////////////////////////////
+
+	struct SpawnPoint
+	{
+		float m_fX;
+		float m_fY;
+		CEnemy* m_eEnemyToSpawn;
+		bool m_bIsActive;
+
+		SpawnPoint(CEnemy* toSpawn = NULL)
+		{
+			m_eEnemyToSpawn = toSpawn;
+			m_fX = 0;
+			m_fY = 0;
+			m_bIsActive = false;
+		}
+	};
+
+private:
 
 	//----------------------------------------------
 	//Encapsulation of TOE
@@ -41,7 +70,10 @@ class CTileManager
 	CPlayer* m_pPlayer;
 	//------------------------------------
 
-	
+	//-----------------------------------
+	// Spawn Point Variables
+	SpawnPoint* m_pSpawnPoints;
+	//-----------------------------------
 
 
 protected:
@@ -49,6 +81,9 @@ protected:
 
 
 public:
+
+
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// Function: GetInstance
@@ -73,7 +108,6 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 
 	void ReleaseManager();
-
 
 	//////////////////////////////////////////////////////////////////////////
 	// Function: GetCurrentLevel()
