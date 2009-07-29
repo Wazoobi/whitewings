@@ -7,6 +7,7 @@
 /////////////////////////////////////////////////
 
 #include "CObjectManager.h"
+#include "CTileManager.h"
 #include "CBase.h"
 #include <algorithm>
 
@@ -44,10 +45,7 @@ void CObjectManager::UpdateObjects(float fElapsedTime)
 void CObjectManager::RenderObjects(void)
 {
 	for (unsigned int i=0; i < m_vObjectList.size(); i++)
-	{
-		// TODO: if object is within camera bounds, then do this
 		m_vObjectList[i]->Render();
-	}
 }
 
 void CObjectManager::AddObject(CBase* pObject)
@@ -99,6 +97,9 @@ void CObjectManager::RemoveAllObjects(void)
 }
 void CObjectManager::CheckCollisions()
 {
+	CTileManager* pTM = CTileManager::GetInstance();
+	CCamera* pCamera = pTM->GetCamera();
+
 	// TODO: Rewrite This
 	
 	for(unsigned int i = 0; i < m_vObjectList.size(); i++)
@@ -106,6 +107,19 @@ void CObjectManager::CheckCollisions()
 			if(m_vObjectList[i]->GetObjectType() != m_vObjectList[j]->GetObjectType())
 				if(m_vObjectList[i]->CheckCollision(m_vObjectList[j]))
 					continue;
+
+	for(unsigned int i = 0; i < m_vObjectList.size(); ++i)
+	{
+		if (m_vObjectList[i]->GetPosX() >= pCamera->GetCameraPosX() &&
+			m_vObjectList[i]->GetPosX() <= pCamera->GetCameraPosX() + CGame::GetInstance()->GetScreenWidth())
+		{
+			if (m_vObjectList[i]->GetPosY() >= pCamera->GetCameraPosY() &&
+				m_vObjectList[i]->GetPosY() <= pCamera->GetCameraPosY() + CGame::GetInstance()->GetScreenHeight())
+			{
+				pTM->CheckLevelCollisions(m_vObjectList[i], pCamera);
+			}
+		}
+	}
 }
 
 void CObjectManager::SortObjects(void)

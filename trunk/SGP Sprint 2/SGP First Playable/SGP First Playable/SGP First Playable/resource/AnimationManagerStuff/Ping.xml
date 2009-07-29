@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Sheet>
+  <SheetImage FilePath="C:\Users\Dr. Snow\Documents\School\SGP\Animation Editor\Documentation\IO Test\Ninja Mega.PNG" />
+  <ImageID ID="0" />
+  <Animations>
+    <Animation Name="Running" Looping="true">
+      <Frames>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="0" Y="63" Width="46" Height="44" />
+          <Collision X="7" Y="72" Width="33" Height="30" />
+          <Attack X="21" Y="75" Width="18" Height="26" />
+          <Anchor AnchorX="25" AnchorY="105" />
+          <Weapon WeaponX="39" WeaponY="87" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="44" Y="65" Width="41" Height="43" />
+          <Collision X="50" Y="72" Width="28" Height="31" />
+          <Attack X="63" Y="77" Width="17" Height="20" />
+          <Anchor AnchorX="65" AnchorY="105" />
+          <Weapon WeaponX="78" WeaponY="90" />
+          <Triggers />
+        </Frame>
+      </Frames>
+    </Animation>
+    <Animation Name="Jumping" Looping="false">
+      <Frames>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="1" Y="257" Width="36" Height="54" />
+          <Collision X="7" Y="263" Width="24" Height="41" />
+          <Attack X="22" Y="269" Width="9" Height="29" />
+          <Anchor AnchorX="19" AnchorY="306" />
+          <Weapon WeaponX="28" WeaponY="286" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="35" Y="252" Width="35" Height="59" />
+          <Collision X="40" Y="256" Width="23" Height="48" />
+          <Attack X="60" Y="259" Width="3" Height="41" />
+          <Anchor AnchorX="54" AnchorY="304" />
+          <Weapon WeaponX="64" WeaponY="275" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="69" Y="250" Width="31" Height="61" />
+          <Collision X="73" Y="254" Width="24" Height="51" />
+          <Attack X="93" Y="260" Width="5" Height="37" />
+          <Anchor AnchorX="87" AnchorY="307" />
+          <Weapon WeaponX="96" WeaponY="274" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="98" Y="250" Width="37" Height="62" />
+          <Collision X="102" Y="256" Width="30" Height="51" />
+          <Attack X="129" Y="254" Width="2" Height="45" />
+          <Anchor AnchorX="120" AnchorY="304" />
+          <Weapon WeaponX="130" WeaponY="271" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="133" Y="248" Width="34" Height="65" />
+          <Collision X="138" Y="258" Width="24" Height="48" />
+          <Attack X="158" Y="264" Width="6" Height="31" />
+          <Anchor AnchorX="151" AnchorY="305" />
+          <Weapon WeaponX="160" WeaponY="278" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="164" Y="257" Width="35" Height="52" />
+          <Collision X="167" Y="263" Width="24" Height="41" />
+          <Attack X="184" Y="273" Width="10" Height="21" />
+          <Anchor AnchorX="181" AnchorY="304" />
+          <Weapon WeaponX="190" WeaponY="286" />
+          <Triggers />
+        </Frame>
+      </Frames>
+    </Animation>
+  </Animations>
+  <Animations>
+    <Animation Name="Running" Looping="true">
+      <Frames>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="0" Y="63" Width="46" Height="44" />
+          <Collision X="7" Y="72" Width="33" Height="30" />
+          <Attack X="21" Y="75" Width="18" Height="26" />
+          <Anchor AnchorX="25" AnchorY="105" />
+          <Weapon WeaponX="39" WeaponY="87" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="44" Y="65" Width="41" Height="43" />
+          <Collision X="50" Y="72" Width="28" Height="31" />
+          <Attack X="63" Y="77" Width="17" Height="20" />
+          <Anchor AnchorX="65" AnchorY="105" />
+          <Weapon WeaponX="78" WeaponY="90" />
+          <Triggers />
+        </Frame>
+      </Frames>
+    </Animation>
+    <Animation Name="Jumping" Looping="false">
+      <Frames>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="1" Y="257" Width="36" Height="54" />
+          <Collision X="7" Y="263" Width="24" Height="41" />
+          <Attack X="22" Y="269" Width="9" Height="29" />
+          <Anchor AnchorX="19" AnchorY="306" />
+          <Weapon WeaponX="28" WeaponY="286" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="35" Y="252" Width="35" Height="59" />
+          <Collision X="40" Y="256" Width="23" Height="48" />
+          <Attack X="60" Y="259" Width="3" Height="41" />
+          <Anchor AnchorX="54" AnchorY="304" />
+          <Weapon WeaponX="64" WeaponY="275" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="69" Y="250" Width="31" Height="61" />
+          <Collision X="73" Y="254" Width="24" Height="51" />
+          <Attack X="93" Y="260" Width="5" Height="37" />
+          <Anchor AnchorX="87" AnchorY="307" />
+          <Weapon WeaponX="96" WeaponY="274" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="98" Y="250" Width="37" Height="62" />
+          <Collision X="102" Y="256" Width="30" Height="51" />
+          <Attack X="129" Y="254" Width="2" Height="45" />
+          <Anchor AnchorX="120" AnchorY="304" />
+          <Weapon WeaponX="130" WeaponY="271" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="133" Y="248" Width="34" Height="65" />
+          <Collision X="138" Y="258" Width="24" Height="48" />
+          <Attack X="158" Y="264" Width="6" Height="31" />
+          <Anchor AnchorX="151" AnchorY="305" />
+          <Weapon WeaponX="160" WeaponY="278" />
+          <Triggers />
+        </Frame>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="164" Y="257" Width="35" Height="52" />
+          <Collision X="167" Y="263" Width="24" Height="41" />
+          <Attack X="184" Y="273" Width="10" Height="21" />
+          <Anchor AnchorX="181" AnchorY="304" />
+          <Weapon WeaponX="190" WeaponY="286" />
+          <Triggers />
+        </Frame>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sheet>
