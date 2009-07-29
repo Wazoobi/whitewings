@@ -485,9 +485,11 @@ namespace WindowsFormsApplication1
             TileLayers[CurLayer - 1].PointsClicked = null;
             TileLayers[CurLayer - 1].TilePoints = null;
             TileLayers[CurLayer - 1].PointsCollideable = null;
+            TileLayers[CurLayer - 1].Triggers = null;
             TileLayers[CurLayer - 1].TotalCollideableTiles = 0;
             TileLayers[CurLayer - 1].TotalPointsClicked = 0;
             TileLayers[CurLayer - 1].TotalTilePoints = 0;
+            TileLayers[CurLayer - 1].TotalTriggers = 0;
         }
 
         private void btndelall_Click(object sender, EventArgs e)
@@ -497,8 +499,10 @@ namespace WindowsFormsApplication1
                 TileLayers[i].PointsClicked = null;
                 TileLayers[i].TilePoints = null;
                 TileLayers[i].PointsCollideable = null;
+                TileLayers[CurLayer - 1].Triggers = null;
                 TileLayers[i].TotalCollideableTiles = 0;
                 TileLayers[i].TotalPointsClicked = 0;
+                TileLayers[CurLayer - 1].TotalTriggers = 0;
                 TileLayers[i].TotalTilePoints = 0;
             }
         }
@@ -530,6 +534,12 @@ namespace WindowsFormsApplication1
 
                 int MouseX = e.Location.X + hScrollBar1.Value;
                 int MouseY = e.Location.Y + vScrollBar1.Value;
+
+                if (MouseX >= CURRENT_WIDTH || MouseX < 0)
+                    return;
+
+                if (MouseY >= CURRENT_HEIGHT || MouseY < 0)
+                    return;
 
                 MouseX /= TILE_WIDTH;
                 MouseY /= TILE_HEIGHT;
@@ -774,15 +784,21 @@ namespace WindowsFormsApplication1
 
                 else if (rCollision.Checked == true && DrawFill != true)
                 {
-                    Point tempPoint = Point.Empty;
-                    tempPoint.X = MouseX;
-                    tempPoint.Y = MouseY;
-                    tempPoint.X += hScrollBar1.Value;
-                    tempPoint.Y += vScrollBar1.Value;
 
-                    tempPoint.X = ((tempPoint.X / 32) * 32);
-                    tempPoint.Y = ((tempPoint.Y / 32) * 32);
+                    MouseX = e.Location.X + hScrollBar1.Value;
+                    MouseY = e.Location.Y + vScrollBar1.Value;
 
+                    if (MouseX >= CURRENT_WIDTH || MouseX < 0)
+                        return;
+
+                    if (MouseY >= CURRENT_HEIGHT || MouseY < 0)
+                        return;
+
+                    MouseX /= TILE_WIDTH;
+                    MouseY /= TILE_HEIGHT;
+
+                    MouseX *= TILE_WIDTH;
+                    MouseY *= TILE_HEIGHT;
 
                     if (TileLayers[CurLayer - 1].TotalCollideableTiles == 0)
                     {
@@ -796,7 +812,7 @@ namespace WindowsFormsApplication1
                         TileLayers[CurLayer - 1].PointsCollideable = new Point[TileLayers[CurLayer - 1].TotalCollideableTiles];
                         TileLayers[CurLayer - 1].PointsCollideable = temp;
                     }
-                    TileLayers[CurLayer - 1].PointsCollideable[TileLayers[CurLayer - 1].TotalCollideableTiles] = tempPoint;
+                    TileLayers[CurLayer - 1].PointsCollideable[TileLayers[CurLayer - 1].TotalCollideableTiles] = new Point(MouseX, MouseY);
                     TileLayers[CurLayer - 1].TotalCollideableTiles++;
                 }
                 else if (rTrigger.Checked == true && DrawFill != true)
@@ -805,12 +821,20 @@ namespace WindowsFormsApplication1
                     dlg.parent = this;
                     dlg.Show();
 
-                    Point tempPoint = new Point(MouseX, MouseY);
-                    tempPoint.X += hScrollBar1.Value;
-                    tempPoint.Y += vScrollBar1.Value;
+                    MouseX = e.Location.X + hScrollBar1.Value;
+                    MouseY = e.Location.Y + vScrollBar1.Value;
 
-                    tempPoint.X = ((tempPoint.X / 32) * 32);
-                    tempPoint.Y = ((tempPoint.Y / 32) * 32);
+                    if (MouseX >= CURRENT_WIDTH || MouseX < 0)
+                        return;
+
+                    if (MouseY >= CURRENT_HEIGHT || MouseY < 0)
+                        return;
+
+                    MouseX /= TILE_WIDTH;
+                    MouseY /= TILE_HEIGHT;
+
+                    MouseX *= TILE_WIDTH;
+                    MouseY *= TILE_HEIGHT;
 
                     if (TileLayers[CurLayer - 1].Triggers != null)
                     {
@@ -825,7 +849,7 @@ namespace WindowsFormsApplication1
                         TileLayers[CurLayer - 1].Triggers = new Trigger[1];
 
                     TileLayers[CurLayer - 1].Triggers[TileLayers[CurLayer - 1].TotalTriggers] = new Trigger();
-                    TileLayers[CurLayer - 1].Triggers[TileLayers[CurLayer - 1].TotalTriggers].TriggerPosition = tempPoint;
+                    TileLayers[CurLayer - 1].Triggers[TileLayers[CurLayer - 1].TotalTriggers].TriggerPosition = new Point(MouseX, MouseY);
                 }
 
             }
@@ -1055,6 +1079,28 @@ namespace WindowsFormsApplication1
                     }
 
                 }
+                for (int i = 0; i < TileLayers[CurLayer - 1].TotalTriggers; ++i)
+                {
+                    if (TileLayers[CurLayer - 1].Triggers[i].TriggerPosition == new Point(MouseX, MouseY))
+                    {
+
+                        List<Trigger> tempList = new List<Trigger>();
+
+                        for (int j = 0; j < TileLayers[CurLayer - 1].TotalTriggers; ++j)
+                        {
+                            if (TileLayers[CurLayer - 1].Triggers[j].TriggerPosition != new Point(MouseX, MouseY))
+                            {
+                                tempList.Add(TileLayers[CurLayer - 1].Triggers[j]);
+                            }
+                        }
+
+                        TileLayers[CurLayer - 1].Triggers = tempList.ToArray();
+                        TileLayers[CurLayer - 1].TotalTriggers = (short)tempList.Count;
+                        break;
+                    }
+
+                }
+
             }
 
     
@@ -1127,6 +1173,12 @@ namespace WindowsFormsApplication1
                         // Index the map at the points array.X, points array.Y and set the tile to draw from at the tile points[i]
                         if (TileLayers[curLayer].PointsClicked == null)
                             break;
+
+                        //if (TileLayers[curLayer].PointsClicked[i].X < CURRENT_WIDTH || TileLayers[curLayer].PointsCollideable[i].X <= 0)
+                        //    continue;
+                        //else if (TileLayers[curLayer].PointsClicked[i].Y < CURRENT_HEIGHT || TileLayers[curLayer].PointsCollideable[i].Y >= 0)
+                        //    continue;
+
                         mapArray[curLayer][TileLayers[curLayer].PointsClicked[i].X / TILE_WIDTH, TileLayers[curLayer].PointsClicked[i].Y / TILE_HEIGHT].ToDrawFrom = TileLayers[curLayer].TilePoints[i];
                         mapArray[curLayer][TileLayers[curLayer].PointsClicked[i].X / TILE_WIDTH, TileLayers[curLayer].PointsClicked[i].Y / TILE_HEIGHT].IsDrawn = true;                        
                     }
@@ -1134,6 +1186,11 @@ namespace WindowsFormsApplication1
                     {
                         if (TileLayers[curLayer].PointsCollideable == null)
                             break;
+                        //if (TileLayers[curLayer].PointsCollideable[j].X < CURRENT_WIDTH || TileLayers[curLayer].PointsCollideable[j].X <= 0)
+                        //    continue;
+                        //else if (TileLayers[curLayer].PointsCollideable[j].Y < CURRENT_HEIGHT || TileLayers[curLayer].PointsCollideable[j].Y >= 0)
+                        //    continue;
+
                         mapArray[curLayer][TileLayers[curLayer].PointsCollideable[j].X / TILE_WIDTH, TileLayers[curLayer].PointsCollideable[j].Y / TILE_HEIGHT].IsCollideable = true;
                         mapArray[curLayer][TileLayers[curLayer].PointsCollideable[j].X / TILE_WIDTH, TileLayers[curLayer].PointsCollideable[j].Y / TILE_HEIGHT].IsDrawn = true;
                     }
@@ -1142,6 +1199,10 @@ namespace WindowsFormsApplication1
                     {
                         if (TileLayers[curLayer].TotalTriggers == 0)
                             break;
+                        //if (TileLayers[curLayer].Triggers[j].TriggerPosition.X < CURRENT_WIDTH || TileLayers[curLayer].Triggers[j].TriggerPosition.X <= 0)
+                        //    continue;
+                        //else if (TileLayers[curLayer].Triggers[j].TriggerPosition.Y < CURRENT_HEIGHT || TileLayers[curLayer].Triggers[j].TriggerPosition.Y >= 0)
+                        //    continue;
                         mapArray[curLayer][TileLayers[curLayer].Triggers[j].TriggerPosition.X / TILE_WIDTH, TileLayers[curLayer].Triggers[j].TriggerPosition.Y / TILE_HEIGHT].pTrigger = TileLayers[curLayer].Triggers[j];
                         mapArray[curLayer][TileLayers[curLayer].Triggers[j].TriggerPosition.X / TILE_WIDTH, TileLayers[curLayer].Triggers[j].TriggerPosition.Y / TILE_HEIGHT].IsDrawn = true;
                     }
@@ -1205,10 +1266,15 @@ namespace WindowsFormsApplication1
                 TileLayers[i].PointsClicked = null;
                 TileLayers[i].TilePoints = null;
                 TileLayers[i].PointsCollideable = null;
+                TileLayers[i].Triggers = null;
                 TileLayers[i].TotalCollideableTiles = 0;
                 TileLayers[i].TotalPointsClicked = 0;
                 TileLayers[i].TotalTilePoints = 0;
+                TileLayers[i].TotalTriggers = 0;
+                
             }
+
+            ImageFileName = null;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1223,6 +1289,8 @@ namespace WindowsFormsApplication1
                 writer.Write(TILE_HEIGHT);
                 writer.Write((int)(CURRENT_WIDTH));
                 writer.Write((int)(CURRENT_HEIGHT));
+                writer.Write(ImageFileName.Length);
+                writer.Write(ImageFileName);
 
                 for (int i = 0; i < 5; ++i )
                 {
@@ -1252,6 +1320,7 @@ namespace WindowsFormsApplication1
                     {
                         writer.Write(TileLayers[i].Triggers[j].TriggerPosition.X);
                         writer.Write(TileLayers[i].Triggers[j].TriggerPosition.Y);
+                        writer.Write(TileLayers[i].Triggers[j].EventString.Length);
                         writer.Write(TileLayers[i].Triggers[j].EventString);
                     }
                 }
@@ -1268,17 +1337,20 @@ namespace WindowsFormsApplication1
                 TILE_WIDTH = reader.ReadInt32();
                 TILE_WIDTH = reader.ReadInt32();
                 TILE_HEIGHT = reader.ReadInt32();
-                CURRENT_WIDTH = reader.ReadInt32() * TILE_WIDTH;
-                CURRENT_HEIGHT = reader.ReadInt32() * TILE_HEIGHT;
+                CURRENT_WIDTH = reader.ReadInt32();
+                CURRENT_HEIGHT = reader.ReadInt32();
 
                 int points = 0;
                 int tiles = 0;
                 int collide = 0;
                 int triggers = 0;
+                int length = 0;
+                length = reader.ReadInt32();
+                ImageFileName = new String(reader.ReadChars(length + 1));
 
                 for (int i = 0; i < 5; ++i )
                 {
-                    points = reader.ReadInt32();
+                    points = reader.ReadInt16();
                     TileLayers[i].PointsClicked = new Point[points];
                     for (int j = 0; j < points; ++j )
                     {
@@ -1287,7 +1359,7 @@ namespace WindowsFormsApplication1
                     }
                     TileLayers[i].TotalPointsClicked = (short)points;
 
-                    tiles = reader.ReadInt32();
+                    tiles = reader.ReadInt16();
                     TileLayers[i].TilePoints = new Point[tiles];
                     for (int j = 0; j < tiles; ++j )
                     {
@@ -1296,7 +1368,7 @@ namespace WindowsFormsApplication1
                     }
                     TileLayers[i].TotalTilePoints = (short)tiles;
 
-                    collide = reader.ReadInt32();
+                    collide = reader.ReadInt16();
                     TileLayers[i].PointsCollideable = new Point[collide];
                     for (int j = 0; j < collide; ++j )
                     {
@@ -1305,7 +1377,7 @@ namespace WindowsFormsApplication1
                     }
                     TileLayers[i].TotalCollideableTiles = (short)collide;
 
-                    triggers = reader.ReadInt32();
+                    triggers = reader.ReadInt16();
                     TileLayers[i].Triggers = new Trigger[triggers];
                     for (int z = 0; z < triggers; ++z)
                     {
@@ -1317,15 +1389,14 @@ namespace WindowsFormsApplication1
                         Point position = new Point();
                         position.X = reader.ReadInt32();
                         position.Y = reader.ReadInt32();
-                        stringCount = reader.Read();
-                        char[] events = new char[stringCount];
-                        reader.Read(events, 0, stringCount);
-                        TileLayers[i].Triggers[j].EventString = new String(events);
+                        stringCount = reader.ReadInt32();
+                        TileLayers[i].Triggers[j].EventString = new String(reader.ReadChars(stringCount + 1));
                     }
                     TileLayers[i].TotalTriggers = (short)triggers;
 
                 }
-
+                ImageFileName = new String(ImageFileName.ToCharArray(1, ImageFileName.Length - 1));
+                TileIds[0] = (short)TM_ImagePort.LoadTexture(ImageFileName, Color.White.ToArgb());
             }
         } 
             
