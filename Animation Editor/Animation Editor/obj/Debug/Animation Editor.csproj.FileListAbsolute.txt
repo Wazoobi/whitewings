@@ -6,3 +6,5 @@ C:\Users\Dr. Snow\Documents\School\SGP\Animation Editor\Animation Editor\bin\Deb
 C:\Users\Dr. Snow\Documents\School\SGP\Animation Editor\Animation Editor\bin\Debug\Animation Editor.pdb
 C:\Users\Dr. Snow\Documents\School\SGP\Animation Editor\Animation Editor\obj\Debug\Animation Editor.exe
 C:\Users\Dr. Snow\Documents\School\SGP\Animation Editor\Animation Editor\obj\Debug\Animation Editor.pdb
+C:\Documents and Settings\Juno\Desktop\SGP Repository\Animation Editor\Animation Editor\obj\Debug\Animation Editor.exe
+C:\Documents and Settings\Juno\Desktop\SGP Repository\Animation Editor\Animation Editor\obj\Debug\Animation Editor.pdb
