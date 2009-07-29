@@ -53,12 +53,12 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 
 	//======================================================================================================
 	// initialize based on the position in the world
-	if(GetCameraPosX() >= 0)												//we start at n - 1 if not at the
+	if(GetCameraPosX() > 0)													//we start at n - 1 if not at the
 		i		= (short)(GetCameraPosX()/TILE_WIDTH) - 1;					//beginning of the level to prevent
 	else																	//"tile tearing" while rendering
 		i		= 0;
 
-	if(GetCameraPosY() >= 0)
+	if(GetCameraPosY() > 0)
 		j		= (short)(GetCameraPosY()/TILE_HEIGHT) - 1;					//but if we are at a position at the
 	else																	//beginning we can't read into data 
 		j		= 0;														//that doesn't exist so adjust for it
@@ -66,12 +66,12 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 	if(GetCameraPosX() + CGame::GetInstance()->GetScreenWidth() < levelWidth*TILE_WIDTH)
 		YMax	= (short)(GetCameraPosX()/TILE_WIDTH) + (short)(CGame::GetInstance()->GetScreenWidth()/TILE_WIDTH) + 1;
 	else
-		YMax = levelWidth*TILE_WIDTH;
+		YMax = levelWidth;
 
 	if(GetCameraPosY() + CGame::GetInstance()->GetScreenHeight() < levelHeight*TILE_HEIGHT)
-		XMax	= (short)(GetCameraPosY()/TILE_HEIGHT) + (short)(CGame::GetInstance()->GetScreenHeight()/TILE_HEIGHT) + 1;
+		XMax	= (short)(GetCameraPosY()/TILE_HEIGHT) + (short)(CGame::GetInstance()->GetScreenHeight()/TILE_HEIGHT) + 4;
 	else
-		XMax = levelHeight*TILE_HEIGHT;
+		XMax = levelHeight;
 
 	//======================================================================================================
 	//------------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 
 			for ( j ; j < XMax; ++j )
 			{
-				if (pRenderArrays[curLayer][i][j].m_shTileImageIndex != -1 || pRenderArrays[curLayer][i][j].m_bIsCollideable)
+				if (pRenderArrays[curLayer][i][j].m_shTileImageIndex != -1)
 				{
 					toDrawAt.left		= (LONG)pRenderArrays[curLayer][i][j].m_shX;		//At loop time decide the
 					toDrawAt.top		= (LONG)pRenderArrays[curLayer][i][j].m_shY;		//section. 
@@ -109,10 +109,7 @@ void CCamera::RenderLevel(CLevel::Tile*** pRenderArrays, int levelWidth, int lev
 					if(!pRenderArrays[curLayer][i][j].m_bIsCollideable)
 						CSGD_TextureManager::GetInstance()->Draw(pRenderArrays[curLayer][i][j].m_shTileImageIndex,
 							(i * TILE_WIDTH) - GetCameraPosX(), j * TILE_WIDTH - GetCameraPosY(), 1, 1, &toDrawAt);
-					else if(pRenderArrays[curLayer][i][j].m_bIsCollideable)
-						CSGD_TextureManager::GetInstance()->Draw(pRenderArrays[curLayer][i][j].m_shTileImageIndex,
-						(i * TILE_WIDTH) - GetCameraPosX(), j * TILE_WIDTH - GetCameraPosY(), 1, 1, &toDrawAt, 0, 0, 0,
-						D3DCOLOR_ARGB(255, 255, 0, 0));
+					
 				}
 			}
 		}
