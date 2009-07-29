@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Sheet>
+  <SheetImage FilePath="C:\Users\Dr. Snow\Documents\School\SGP\Animation Editor\Documentation\IO Test\RobotSentinel.bmp" />
+  <ImageID ID="0" />
+  <Animations>
+    <Animation Name="Test One" Looping="true">
+      <Frames>
+        <Frame>
+          <Duration Time="10" />
+          <Image X="14" Y="9" Width="83" Height="107" />
+          <Collision X="19" Y="11" Width="78" Height="103" />
+          <Attack X="29" Y="61" Width="55" Height="32" />
+          <Anchor AnchorX="55" AnchorY="113" />
+          <Weapon WeaponX="55" WeaponY="40" />
+          <Triggers>
+            <Trigger Event="YarHar" LocX="58" LocY="73" />
+          </Triggers>
+        </Frame>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sheet>

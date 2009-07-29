@@ -1,0 +1,148 @@
+Animation Engine
+
+Array of Animation Structs
+Animation:
+	image (sprite strip), rect, 
+* Anchor Point
+* Frames
+* Collision Rects
+* Image Rects
+* Attack Rects 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Animation Editor
+
+* Save & Load binary & xml files
+* Save multiple animations per file
+* Rects
+	* Image Rect
+	* Collision Rect/rects
+	* Attack Rect
+* Anchor Point
+* Triggers
+* Manual Editing of info (Numeric Up Downs for all 
+			    info and properties)
+
+* Edit previously made rects/points/frames/animations
+* Looping or single animation support
+* Frame based triggers
+	* string attached to a frame that becomes an 
+		event when loaded by the game
+
+* Rects must be drawn from any direction
+* Playback window
+* Alternate collision detection types (optional, hard)
+	* Line based, primitive based, radius based
+* change anchor point used in the playback window (optional, easy)
+
+
+
+
+
+Animation Manager
+{
+	Array of Sheets
+		Animation* m_pAnimations
+	Instance of AnimationManager
+}
+
+Sheet
+{
+	ImageID
+	Array of Animations
+	FilePath
+}
+
+Animations
+{
+	Array of Frames
+		Frame* m_pFrames
+	Bool isLooping
+	String Name
+}
+
+Frames
+{
+	Rects
+		Collision
+		Image
+		Attack
+	Points
+		Anchor Either point or 2 ints for x,y
+	Triggers
+		Trigger* m_pTriggers
+	Float Duration (how long this frame will be on screen
+	Color
+}
+
+Triggers
+{
+	Point for where it is
+		point m_PLocation
+	String for event
+		string m_szEvent
+}
+
+AnimationInstance
+{
+	Frame* currFrame
+	Animation* currAnim
+	Sheet* currSheet
+	Rect Passive
+	float currTime
+}
+
+Functions
+
+Loading In (Initialize)
+	array of ImageID/filename	
+What It Do:
+	Sets up the animations for the level at the beginning
+	of each level. Takes in a pointer for ImageIDs or 
+	possibly filenames for the sprite sheets.
+	
+Clear
+What it Do:
+	Clears the Animation Manager at the end of the level
+	to re-initialize for the next level.
+
+Load XML File
+	filename
+What It Do:
+	Loads in an XML file to set up Animations
+
+Load Binary File
+	filename
+What It Do:
+	Loads in a Binary file to set up Animations
+
+Update(&animationInstance, float ElapsedTime)
+What It Do:
+
+GetInstance()
+What It Do:
+
+
+
+
+
+
+Tool Documentation
+~~~~~~~~~~~~~~~~~~~~~
+
+Animation Editor
+
+Overview:
+	The Animation Editor will allow us to create and change animations
+for all animations throughout our game quickly and easily. Character, enemy,
+and animating objects will all have their animations handled by the Animation
+Editor and Engine to create and use their animations in our game. 
+
+Features:
+	- Creating rectangles for rendering and collision for each from by 
+	drawing on a sprite sheet.
+	- Setting Anchor points and triggers for each frame
+	- Ability to preview animation with pause/play control
+	-
+
