@@ -66,6 +66,7 @@ bool BitmapFontManager::DrawString(string szText, int nFontImageID, int nPosX, i
 	int nNetWidth = 0;
 	int nMaxHeight = 0;
 	int toadd = 0;
+	int offset = 0;
 	if ( LoadBinary(nFontImageID))			//Check for .bin file
 	{
 		for (int i = 0; i < szText.length();i++)
@@ -85,6 +86,7 @@ bool BitmapFontManager::DrawString(string szText, int nFontImageID, int nPosX, i
 							{
 								section = m_vFonts[j].CharRects[k].bounding;
 								toadd = (section.right - section.left) * fScaleX;
+								offset = m_vFonts[j].CharRects[k].Offset * fScaleY;
 							}
 							
 
@@ -92,7 +94,7 @@ bool BitmapFontManager::DrawString(string szText, int nFontImageID, int nPosX, i
 					}
 				}
 			
-			CSGD_TextureManager::GetInstance()->Draw(nFontImageID,nPosX + nNetWidth, nPosY,fScaleX,fScaleY,&section,0,0,0,dwTransparencyColor);
+			CSGD_TextureManager::GetInstance()->Draw(nFontImageID,nPosX + nNetWidth, nPosY + offset,fScaleX,fScaleY,&section,0,0,0,dwTransparencyColor);
 			nNetWidth += (toadd + (8 * fScaleX)) ;
 			}
 		}
