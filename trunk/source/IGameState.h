@@ -22,4 +22,4 @@ public:
 	virtual bool Input(void) = 0;
 	virtual void Update(float fElapsedTime) = 0;
 	virtual void Render(void) = 0;
-};
+};5
